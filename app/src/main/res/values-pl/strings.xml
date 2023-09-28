@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_type_challange">Wyzwania</string>
+    <string name="game_type_challange_description">Ta kategoria obejmuje zabawne i aktywne wyzwania, takie jak Taniec Macareny przez 1 minutę, Wykonanie 10 przysiadów w 10 sekund, Przeskakiwanie na jednej nodze po pokoju przez 30 sekund itp. Aby zdobyć punkty, gracze muszą wykonać te zadania w określonym czasie lub w określonej ilości.</string>
+    <string name="game_type_improvisation">Improwizacja</string>
+    <string name="game_type_improvisation_description">To gra polegająca na odgadywaniu filmów, programów telewizyjnych, piosenek lub książek za pomocą pantomimy. Gracze na zmianę próbują odgadnąć, co przedstawia ich kolega z drużyny. Drużyna z największą liczbą poprawnych odpowiedzi wygrywa.</string>
+    <string name="game_type_riddle">Zagadki</string>
+    <string name="game_type_riddle_description">Ta kategoria obejmuje różne łamigłówki i zagadki. Gracze muszą je jak najszybciej rozwiązać. Jeśli ktoś zmaga się z zagadką, inni gracze mogą udzielić wskazówek, ale kosztem utraty punktów.</string>
+    <string name="game_type_yes_or_no">20 pytań</string>
+    <string name="game_type_yes_or_no_description">To gra polegająca na odgadywaniu osoby za pomocą 20 pytań. Gracz na zmianę zadaje pytania o osobę, którą inni próbują odgadnąć. Pytania muszą być tak sformułowane, aby można było odpowiedzieć na nie tak lub nie. Gracz, który jako pierwszy odgadnie osobę, wygrywa.</string>
+    <string name="start_game">Rozpocznij grę</string>
+</resources>

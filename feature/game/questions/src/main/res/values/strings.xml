@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="game_type_yes_or_no">20 questions</string>
+    <string name="game_type_yes_or_no_description">This is a guessing game based on 20 questions. The player takes turns asking questions about the person that others are trying to guess. Questions must be worded so that they can be answered yes or no. The first player to guess the person wins.</string>
+    <string name="questionsLeft">Questions left</string>
+    <string name="next_character">Next Character</string>
+    <string name="undo">Undo</string>
+    <string name="scored_points">Scored points: %1$d</string>
+    <string name="label_question_used">Asked 1 question</string>
+    <string name="label_undo_question_used">Undo asked question</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="done">Done</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="close_game">Close game</string>
+    <string name="next_turn">Next turn</string>
+    <string name="next_turn_prompt">Pass the phone to the next player.</string>
+    <string name="scored_points">You scored %d points.</string>
+    <string name="dialog_title_quit_game">Quit game</string>
+    <string name="dialog_text_quit_game">Are you sure you want to finish the game and exit?</string>
+</resources>

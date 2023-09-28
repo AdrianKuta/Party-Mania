@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -15,3 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Party Mania"
 include(":app")
+include(":data")
+include(":core:ui")
+include(":core:util")
+include(":feature:game:questions")

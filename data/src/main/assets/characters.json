@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "name": "Adam Małysz"
+    }, {
+      "name": "Harry Potter"
+    }, {
+      "name": "SpongeBob"
+    }, {
+      "name": "Miś uszatek"
+    }, {
+      "name": "Brzydkie kaczątko"
+    }, {
+      "name": "Papa Smerf"
+    }, {
+      "name": "Smerfetka"
+    }, {
+      "name": "Gargamel",
+      "category": "Smerfy"
+    }, {
+      "name": "Ważniak",
+      "category": "Smerfy"
+    }, {
+      "name": "Roszpunka"
+    }, {
+      "name": "Myszka Miki"
+    }, {
+      "name": "Król Lew"
+    }, {
+      "name": "Elsa",
+      "category": "Kraina lodu"
+    }, {
+      "name": "Olaf",
+      "category": "Kraina lodu"
+    }, {
+      "name": "Mała syrenka"
+    }, {
+      "name": "Kubuś Puchatek"
+    }, {
+      "name": "Prosiaczek",
+      "category": "Kubuś Puchatek"
+    }, {
+      "name": "Kłapouchy",
+      "category": "Kubuś Puchatek"
+    }, {
+      "name": "Królik",
+      "category": "Kubuś Puchatek"
+    }, {
+      "name": "Maleństwo",
+      "category": "Kubuś Puchatek"
+    }, {
+      "name": "Pan Sowa",
+      "category": "Kubuś Puchatek"
+    }, {
+      "name": "Krzyś",
+      "category": "Kubuś Puchatek"
+    }
+  ]
+}
