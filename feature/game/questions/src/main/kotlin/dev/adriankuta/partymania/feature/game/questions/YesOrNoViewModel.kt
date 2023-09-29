@@ -16,7 +16,6 @@ data class YesNoGameUiState(
     val questionsLeft: Int? = null,
     val currentCharacterIndex: Int = 0,
     val characters: List<Character> = emptyList(),
-    val currentCharacter: Character? = null,
     val scoredPoints: Int = 0,
     val isGameEnd: Boolean = false,
     val showNextPlayerPrompt: Boolean = false,
@@ -41,7 +40,6 @@ class YesOrNoViewModel @Inject constructor(
             _uiState.value = YesNoGameUiState(
                 questionsLeft = 20,
                 characters = randomCharacters,
-                currentCharacter = randomCharacters[0],
                 currentCharacterIndex = 0
             )
         }
@@ -66,7 +64,6 @@ class YesOrNoViewModel @Inject constructor(
                     scoredPoints = it.scoredPoints + (it.questionsLeft ?: 0),
                     questionsLeft = 20,
                     isGameEnd = isGameEnd,
-                    currentCharacter = it.characters[newIndex],
                     currentCharacterIndex = newIndex,
                     showNextPlayerPrompt = false
                 )

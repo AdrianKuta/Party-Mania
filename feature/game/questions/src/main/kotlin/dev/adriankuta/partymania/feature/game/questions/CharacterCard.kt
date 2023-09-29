@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.adriankuta.partymania.data.model.Character
 import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
+import dev.adriankuta.partymania.data.model.Character
 
 @Composable
 fun CharacterCard(

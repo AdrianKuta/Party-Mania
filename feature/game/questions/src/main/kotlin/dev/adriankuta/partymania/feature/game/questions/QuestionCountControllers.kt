@@ -28,8 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -160,7 +158,8 @@ fun NewQuestionCount(
                 modifier = Modifier.weight(1f),
                 onClick = {
                     view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-                    onCountChange(-1) },
+                    onCountChange(-1)
+                },
                 shape = MaterialTheme.shapes.medium,
                 enabled = questionsLeft > 0
             ) {
@@ -173,7 +172,8 @@ fun NewQuestionCount(
                 modifier = Modifier.weight(1f),
                 onClick = {
                     view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-                    onCountChange(1) },
+                    onCountChange(1)
+                },
                 shape = MaterialTheme.shapes.medium,
                 enabled = questionsLeft < 20
             ) {

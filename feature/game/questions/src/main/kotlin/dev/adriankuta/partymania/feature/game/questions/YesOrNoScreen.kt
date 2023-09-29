@@ -1,26 +1,36 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package dev.adriankuta.partymania.feature.game.questions
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.animateIntOffsetAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -30,16 +40,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import dev.adriankuta.partymania.data.model.Character
 import dev.adriankuta.partymania.core.ui.ConfirmQuitGameDialog
 import dev.adriankuta.partymania.core.ui.GameEndedDialog
 import dev.adriankuta.partymania.core.ui.GameTopBar
 import dev.adriankuta.partymania.core.ui.NextPlayerPrompt
 import dev.adriankuta.partymania.core.ui.theme.Elevation
 import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
+import dev.adriankuta.partymania.data.model.Character
+import kotlin.math.min
 
 @Composable
 fun YesOrNoScreen(
@@ -80,15 +93,18 @@ fun YesOrNoScreen(
                 onGameEnd()
             }
         }
-        GameContent(
-            modifier = Modifier.padding(paddingValues),
-            points = uiState.scoredPoints,
-            currentCharacterIndex = uiState.currentCharacterIndex,
-            character = uiState.currentCharacter,
-            questionsLeft = uiState.questionsLeft ?: 0,
-            onCountChange = viewModel::onAnswersChange,
-            onNextQuestion = viewModel::onNextCharacter
-        )
+
+        if (uiState.characters.isNotEmpty()) {
+            GameContent(
+                modifier = Modifier.padding(paddingValues),
+                points = uiState.scoredPoints,
+                currentCharacterIndex = uiState.currentCharacterIndex,
+                characters = uiState.characters,
+                questionsLeft = uiState.questionsLeft ?: 0,
+                onCountChange = viewModel::onAnswersChange,
+                onNextQuestion = viewModel::onNextCharacter
+            )
+        }
     }
 }
 
@@ -97,40 +113,38 @@ private fun GameContent(
     modifier: Modifier = Modifier,
     points: Int,
     currentCharacterIndex: Int = 0,
-    character: Character?,
+    characters: List<Character>,
     questionsLeft: Int,
     onCountChange: (diff: Int) -> Unit,
     onNextQuestion: () -> Unit
 ) {
-    Box(
+    Column(
         modifier = modifier
             .fillMaxSize()
     ) {
         GamePoints(
-            modifier = Modifier.align(Alignment.TopCenter),
             scoredPoints = points
         )
         Column(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(8.dp),
+            modifier = Modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            if (character != null) {
-                Text(
-                    text = "Postać do odgadnięcia",
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.align(Alignment.Start)
-                )
-                CharacterCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(.5F)
-                        .padding(top = 4.dp),
-                    currentCharacterIndex = currentCharacterIndex,
-                    character = character
-                )
-            }
+            val dismissState = rememberDismissState(
+                confirmValueChange = {
+                    onNextQuestion()
+                    false
+                },
+            )
+            Text(
+                text = "Postać do odgadnięcia",
+                style = MaterialTheme.typography.labelLarge,
+                modifier = Modifier.align(Alignment.Start)
+            )
+            CardDeck(
+                modifier = Modifier.weight(1f),
+                currentIndex = currentCharacterIndex,
+                characters = characters
+            )
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -145,6 +159,44 @@ private fun GameContent(
                 onCountChange = onCountChange
             )
 
+        }
+    }
+}
+
+@Composable
+fun CardDeck(
+    modifier: Modifier = Modifier,
+    currentIndex: Int,
+    characters: List<Character>
+) {
+    val visibleCards = min(3, characters.size - currentIndex)
+    val scope = rememberCoroutineScope()
+
+    Box(modifier = modifier.fillMaxSize()) {
+        repeat(visibleCards) { idx ->
+            var moved by remember { mutableStateOf(false) }
+            val index = currentIndex + idx
+            val character = characters[index]
+            val zIndex = 100f - idx
+            val offset by animateIntOffsetAsState(
+                targetValue = if (moved) IntOffset(
+                    500,
+                    0
+                ) else IntOffset.Zero,
+                label = "Animate offset",
+                animationSpec = tween(1000)
+            )
+
+            CharacterCard(
+                modifier = Modifier
+                    .zIndex(zIndex)
+                    .offset { offset }
+                    .clickable {
+                        moved = !moved
+                    },
+                character = character,
+                currentCharacterIndex = index
+            )
         }
     }
 }
@@ -232,7 +284,10 @@ fun QuestionCount(questionsLeft: Int) {
 private fun GameContentPreview() {
     PartyManiaTheme {
         GameContent(
-            character = Character("Kubuś Puchatek", "Kubuś Puchatek"),
+            characters = listOf(
+                Character("Kubuś Puchatek", "Kubuś Puchatek"),
+                Character("Kubuś Puchatek", "Kubuś Puchatek")
+            ),
             points = 25,
             questionsLeft = 20,
             onCountChange = {},
