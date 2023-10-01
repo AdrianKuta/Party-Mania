@@ -1,14 +1,22 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package dev.adriankuta.partymania.feature.game.questions
 
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -32,9 +40,19 @@ private fun Content(
     currentCharacterIndex: Int,
     character: Character
 ) {
+    val interactions: MutableInteractionSource = remember { MutableInteractionSource() }
+
     Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+        onClick = {},
+        modifier = modifier
+            .draggable(
+                rememberDraggableState(onDelta = {
+                }),
+                Orientation.Vertical,
+                interactionSource = interactions
+            ),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+        interactionSource = interactions
     ) {
         Box(
             modifier = Modifier.fillMaxSize()

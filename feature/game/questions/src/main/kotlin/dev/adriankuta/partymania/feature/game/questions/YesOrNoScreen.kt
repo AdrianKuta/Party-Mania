@@ -3,9 +3,9 @@
 package dev.adriankuta.partymania.feature.game.questions
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.core.animateIntOffsetAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,8 +24,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,7 +40,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -51,7 +50,11 @@ import dev.adriankuta.partymania.core.ui.GameTopBar
 import dev.adriankuta.partymania.core.ui.NextPlayerPrompt
 import dev.adriankuta.partymania.core.ui.theme.Elevation
 import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
+import dev.adriankuta.partymania.core.ui.utils.draggable_card.CardState
+import dev.adriankuta.partymania.core.ui.utils.draggable_card.draggableCard
+import dev.adriankuta.partymania.core.ui.utils.draggable_card.rememberDraggableCardState
 import dev.adriankuta.partymania.data.model.Character
+import kotlinx.coroutines.launch
 import kotlin.math.min
 
 @Composable
@@ -129,12 +132,6 @@ private fun GameContent(
             modifier = Modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            val dismissState = rememberDismissState(
-                confirmValueChange = {
-                    onNextQuestion()
-                    false
-                },
-            )
             Text(
                 text = "Postać do odgadnięcia",
                 style = MaterialTheme.typography.labelLarge,
@@ -143,7 +140,8 @@ private fun GameContent(
             CardDeck(
                 modifier = Modifier.weight(1f),
                 currentIndex = currentCharacterIndex,
-                characters = characters
+                characters = characters,
+                onCardDismissed = onNextQuestion
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -167,33 +165,39 @@ private fun GameContent(
 fun CardDeck(
     modifier: Modifier = Modifier,
     currentIndex: Int,
-    characters: List<Character>
+    characters: List<Character>,
+    onCardDismissed: () -> Unit
 ) {
     val visibleCards = min(3, characters.size - currentIndex)
-    val scope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
 
     Box(modifier = modifier.fillMaxSize()) {
         repeat(visibleCards) { idx ->
-            var moved by remember { mutableStateOf(false) }
             val index = currentIndex + idx
+            var moved by remember(index) { mutableStateOf(false) }
             val character = characters[index]
             val zIndex = 100f - idx
-            val offset by animateIntOffsetAsState(
-                targetValue = if (moved) IntOffset(
-                    500,
-                    0
-                ) else IntOffset.Zero,
-                label = "Animate offset",
-                animationSpec = tween(1000)
-            )
+            val cardState = rememberDraggableCardState(key = index)
+
+            LaunchedEffect(moved) {
+                if (moved) {
+                    cardState.animateToState(CardState.SWIPED)
+                } else {
+                    cardState.animateToState(CardState.INITIAL)
+                }
+            }
 
             CharacterCard(
                 modifier = Modifier
+                    .draggableCard(cardState)
                     .zIndex(zIndex)
-                    .offset { offset }
                     .clickable {
-                        moved = !moved
-                    },
+                        coroutineScope.launch {
+                            cardState.animateToState(CardState.SWIPED)
+                            onCardDismissed()
+                        }
+                    }
+                    .scrollable(rememberScrollState(), Orientation.Vertical),
                 character = character,
                 currentCharacterIndex = index
             )

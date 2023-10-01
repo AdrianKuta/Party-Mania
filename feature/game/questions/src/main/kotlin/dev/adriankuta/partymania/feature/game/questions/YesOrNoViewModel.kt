@@ -57,7 +57,7 @@ class YesOrNoViewModel @Inject constructor(
     fun onNextCharacter() {
         _uiState.update {
             val isGameEnd = it.currentCharacterIndex + 1 >= it.characters.size
-            if (isGameEnd || it.showNextPlayerPrompt) {
+            if (isGameEnd || it.showNextPlayerPrompt || true) {
                 val newIndex =
                     if (isGameEnd) it.currentCharacterIndex else it.currentCharacterIndex + 1
                 it.copy(
