@@ -6,7 +6,6 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -15,7 +14,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("com.android.application")
                 apply("dagger.hilt.android.plugin")
                 apply("org.jetbrains.kotlin.android")
-                apply("org.jetbrains.kotlin.kapt")
+                apply("com.google.devtools.ksp")
             }
 
             extensions.configure<BaseAppModuleExtension> {
@@ -25,14 +24,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
                 add("implementation", libs.findLibrary("hilt.android").get())
-                add("kapt", libs.findLibrary("hilt.compiler").get())
+                add("ksp", libs.findLibrary("hilt.compiler").get())
 //              add("androidTestImplementation", libs.findLibrary("hilt.android.testing").get())
 //              add("kaptAndroidTest", libs.findLibrary("hilt.android.compiler").get())
-            }
-
-            val kaptExtension = extensions.getByType<KaptExtension>()
-            kaptExtension.apply {
-                correctErrorTypes = true
             }
         }
     }

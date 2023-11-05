@@ -30,7 +30,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 apply("com.android.library")
                 apply("dagger.hilt.android.plugin")
                 apply("org.jetbrains.kotlin.android")
-                apply("org.jetbrains.kotlin.kapt")
+                apply("com.google.devtools.ksp")
             }
 
             extensions.configure<LibraryExtension> {
@@ -41,7 +41,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", libs.findLibrary("hilt.android").get())
                 add("implementation", libs.findLibrary("timber").get())
-                add("kapt", libs.findLibrary("hilt.compiler").get())
+                add("ksp", libs.findLibrary("hilt.compiler").get())
 //                add("androidTestImplementation", libs.findLibrary("hilt.android.testing").get())
 //                add("kaptAndroidTest", libs.findLibrary("hilt.android.compiler").get())
             }

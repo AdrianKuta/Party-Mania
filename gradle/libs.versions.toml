@@ -1,25 +1,24 @@
 [versions]
-androidGradlePlugin = "8.1.1"
-androidxActivity = "1.7.2"
+androidGradlePlugin = "8.1.2"
+androidxActivity = "1.8.0"
 androidxComposeCompiler = "1.5.3"
 androidxCore = "1.12.0"
 androidxJunit = "1.1.5"
 androidxLifecycle = "2.6.2"
-androidxNavigation = "2.7.3"
+androidxNavigation = "2.7.5"
 espressoCore = "3.5.1"
 gson = "2.10.1"
-hilt = "2.47"
-hiltNavigationCompose = "1.0.0"
+hilt = "2.48"
+hiltNavigationCompose = "1.1.0"
 junit4 = "4.13.2"
 kotlin = "1.9.10"
 kotlinxCoroutinesAndroid = "1.7.3"
 timber = "5.0.1"
 introShowcaseView = "1.0.5"
-
-# BOMs
-androidxComposeBom = "2023.09.02"
+ksp = "1.9.0-1.0.12"
+androidxComposeBom = "2023.10.01"
 appcompat = "1.6.1"
-material = "1.9.0"
+material = "1.10.0"
 
 [libraries]
 android-tools-build-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -48,7 +47,7 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-introShowcaseView = {group = "com.canopas.intro-showcase-view", name = "introshowcaseview", version.ref = "introShowcaseView" }
+introShowcaseView = { group = "com.canopas.intro-showcase-view", name = "introshowcaseview", version.ref = "introShowcaseView" }
 
 
 [plugins]
@@ -59,3 +58,4 @@ com-android-library = { id = "com.android.library", version.ref = "androidGradle
 partymania-android-application = { id = "partymania.android.application", version = "unspecified" }
 partymania-android-library = { id = "partymania.android.library", version = "unspecified" }
 partymania-compose = { id = "partymania.compose", version = "unspecified" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
