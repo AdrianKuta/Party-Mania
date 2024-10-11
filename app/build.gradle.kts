@@ -48,15 +48,13 @@ dependencies {
     implementation(project(":feature:game:questions"))
     implementation(libs.timber)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Architecture components
     implementation(libs.androidx.lifecycle.runtimeCompose)
 
-    // Hilt
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
-
-    implementation(libs.androidx.core)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
 
     // Jetpack Compose
