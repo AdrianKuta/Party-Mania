@@ -14,36 +14,47 @@
  *   limitations under the License.
  */
 
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import dev.adriankuta.partymania.configureAndroid
+import dev.adriankuta.partymania.configureFlavors
+import dev.adriankuta.partymania.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.kotlin
 
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("dagger.hilt.android.plugin")
                 apply("org.jetbrains.kotlin.android")
-                apply("com.google.devtools.ksp")
+                apply("partymania.android.lint")
             }
 
             extensions.configure<LibraryExtension> {
-                configureAndroid(this)
+                configureKotlinAndroid(this)
+                defaultConfig.targetSdk = 34
+                defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                testOptions.animationsDisabled = true
+                configureFlavors(this)
+                //configureGradleManagedDevices(this)
+                // The resource prefix is derived from the module name,
+                // so resources inside ":core:module1" must be prefixed with "core_module1_"
+                resourcePrefix =
+                    path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_")
+                        .lowercase() + "_"
             }
-
-            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+            extensions.configure<LibraryAndroidComponentsExtension> {
+                //configurePrintApksTask(this)
+                //disableUnnecessaryAndroidTests(target)
+            }
             dependencies {
-                add("implementation", libs.findLibrary("hilt.android").get())
-                add("implementation", libs.findLibrary("timber").get())
-                add("ksp", libs.findLibrary("hilt.compiler").get())
-//                add("androidTestImplementation", libs.findLibrary("hilt.android.testing").get())
-//                add("kaptAndroidTest", libs.findLibrary("hilt.android.compiler").get())
+                add("androidTestImplementation", kotlin("test"))
+                add("testImplementation", kotlin("test"))
+
+                //add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
             }
         }
     }

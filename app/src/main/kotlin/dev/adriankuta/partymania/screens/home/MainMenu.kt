@@ -6,13 +6,11 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -52,9 +50,7 @@ fun MainMenu(
                 gameCardUiInfo = it,
                 modifier = Modifier
                     // NicNote: Needs to be inside a LazyLayout to work
-                    .animateItemPlacement(
-                        animationSpec = tween()
-                    )
+                    .animateItem()
                     .animateContentSize(
                         animationSpec = tween()
                     )

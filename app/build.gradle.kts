@@ -1,7 +1,12 @@
+import dev.adriankuta.partymania.PartyManiaBuildType
+
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.partymania.android.application)
-    alias(libs.plugins.partymania.compose)
+    alias(libs.plugins.partymania.android.application.compose)
+    alias(libs.plugins.partymania.android.application.flavors)
+    alias(libs.plugins.partymania.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -9,14 +14,17 @@ android {
 
     defaultConfig {
         applicationId = "dev.adriankuta.partymania"
-        targetSdk = 34
         versionCode = 7
         versionName = "0.0.1"
         signingConfig = signingConfigs.getByName("debug")
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = PartyManiaBuildType.DEBUG.applicationIdSuffix
+        }
         release {
+            applicationIdSuffix = PartyManiaBuildType.RELEASE.applicationIdSuffix
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -24,9 +32,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     packaging {
@@ -55,7 +60,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     // Jetpack Compose
-    implementation(libs.androidx.compose.compiler)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.preview)

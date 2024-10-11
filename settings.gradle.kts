@@ -14,7 +14,11 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Party Mania"
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
+
+rootProject.name = "PartyMania"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":data")
 include(":core:ui")

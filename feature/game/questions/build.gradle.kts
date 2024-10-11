@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.partymania.android.library)
-    alias(libs.plugins.partymania.compose)
+    alias(libs.plugins.partymania.android.library.compose)
 }
 
 android {
@@ -9,13 +9,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:ui"))
-    implementation(project(":data"))
+    implementation(projects.core.ui)
+    implementation(projects.data)
 
     implementation(libs.androidx.lifecycle.runtimeCompose)
 
     // Compose
-    implementation(libs.androidx.compose.compiler)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.preview)
     implementation(libs.androidx.compose.ui.tooling)
