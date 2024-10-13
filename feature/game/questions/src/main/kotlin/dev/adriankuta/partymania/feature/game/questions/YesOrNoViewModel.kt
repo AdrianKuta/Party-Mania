@@ -3,8 +3,8 @@ package dev.adriankuta.partymania.feature.game.questions
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.adriankuta.partymania.core.common.Config
 import dev.adriankuta.partymania.data.FamousCharactersRepository
-import dev.adriankuta.partymania.data.model.Character
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 data class YesNoGameUiState(
     val questionsLeft: Int? = null,
     val currentCharacterIndex: Int = 0,
-    val characters: List<Character> = emptyList(),
+    val characters: List<dev.adriankuta.partymania.core.model.Character> = emptyList(),
     val scoredPoints: Int = 0,
     val isGameEnd: Boolean = false,
     val showNextPlayerPrompt: Boolean = false,

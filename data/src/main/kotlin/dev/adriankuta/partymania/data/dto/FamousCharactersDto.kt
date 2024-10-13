@@ -1,7 +1,5 @@
 package dev.adriankuta.partymania.data.dto
 
-import dev.adriankuta.partymania.data.model.Character
-
 internal data class FamousCharactersDto(
-    val data: List<Character>
+    val data: List<dev.adriankuta.partymania.core.model.Character>
 )

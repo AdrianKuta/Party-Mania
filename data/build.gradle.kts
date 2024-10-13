@@ -9,6 +9,9 @@ android {
 }
 
 dependencies {
+    api(projects.core.model)
+    api(projects.core.common)
+
     implementation(projects.core.util)
     implementation(libs.gson)
     implementation(libs.timber)

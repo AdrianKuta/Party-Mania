@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package dev.adriankuta.partymania.feature.game.questions
+package dev.adriankuta.partymania.core.ui
 
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -22,8 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.adriankuta.partymania.core.common.Config
+import dev.adriankuta.partymania.core.model.Character
 import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
-import dev.adriankuta.partymania.data.model.Character
 
 @Composable
 fun CharacterCard(

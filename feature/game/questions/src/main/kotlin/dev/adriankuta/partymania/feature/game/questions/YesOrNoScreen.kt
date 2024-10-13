@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import dev.adriankuta.partymania.core.ui.CharacterCard
 import dev.adriankuta.partymania.core.ui.ConfirmQuitGameDialog
 import dev.adriankuta.partymania.core.ui.GameEndedDialog
 import dev.adriankuta.partymania.core.ui.GameTopBar
@@ -53,7 +54,6 @@ import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
 import dev.adriankuta.partymania.core.ui.utils.draggable_card.CardState
 import dev.adriankuta.partymania.core.ui.utils.draggable_card.draggableCard
 import dev.adriankuta.partymania.core.ui.utils.draggable_card.rememberDraggableCardState
-import dev.adriankuta.partymania.data.model.Character
 import kotlinx.coroutines.launch
 import kotlin.math.min
 
@@ -116,7 +116,7 @@ private fun GameContent(
     modifier: Modifier = Modifier,
     points: Int,
     currentCharacterIndex: Int = 0,
-    characters: List<Character>,
+    characters: List<dev.adriankuta.partymania.core.model.Character>,
     questionsLeft: Int,
     onCountChange: (diff: Int) -> Unit,
     onNextQuestion: () -> Unit
@@ -165,7 +165,7 @@ private fun GameContent(
 fun CardDeck(
     modifier: Modifier = Modifier,
     currentIndex: Int,
-    characters: List<Character>,
+    characters: List<dev.adriankuta.partymania.core.model.Character>,
     onCardDismissed: () -> Unit
 ) {
     val visibleCards = min(3, characters.size - currentIndex)
@@ -289,8 +289,8 @@ private fun GameContentPreview() {
     PartyManiaTheme {
         GameContent(
             characters = listOf(
-                Character("Kubuś Puchatek", "Kubuś Puchatek"),
-                Character("Kubuś Puchatek", "Kubuś Puchatek")
+                dev.adriankuta.partymania.core.model.Character("Kubuś Puchatek", "Kubuś Puchatek"),
+                dev.adriankuta.partymania.core.model.Character("Kubuś Puchatek", "Kubuś Puchatek")
             ),
             points = 25,
             questionsLeft = 20,

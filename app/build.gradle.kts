@@ -43,9 +43,9 @@ android {
 
 dependencies {
 
-    implementation(project(":data"))
-    implementation(project(":core:ui"))
-    implementation(project(":feature:game:questions"))
+    implementation(projects.core.designsystem)
+    implementation(projects.feature.game.questions)
+
     implementation(libs.timber)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.core.splashscreen)

@@ -9,9 +9,11 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.common)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.model)
 
     // Compose
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.core.ktx)
 }
