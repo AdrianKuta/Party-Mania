@@ -2,16 +2,12 @@
 
 package dev.adriankuta.partymania.core.ui
 
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -45,14 +41,6 @@ private fun Content(
 
     Card(
         onClick = {},
-        modifier = modifier
-            .draggable(
-                rememberDraggableState(onDelta = {
-                }),
-                Orientation.Vertical,
-                interactionSource = interactions
-            ),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
         interactionSource = interactions
     ) {
         Box(
@@ -93,14 +81,16 @@ private fun Content(
     }
 }
 
-@Preview(widthDp = 256, heightDp = 256)
+@Preview(widthDp = 256, heightDp = 256, showBackground = true)
 @Composable
 private fun CardPreview() {
     PartyManiaTheme {
-        CharacterCard(
-            modifier = Modifier.fillMaxSize(),
-            currentCharacterIndex = 0,
-            character = Character("Kubuś Puchatek", "Kubuś Puchatek")
-        )
+        Box(modifier = Modifier.padding(16.dp)) {
+            CharacterCard(
+                modifier = Modifier.fillMaxSize(),
+                currentCharacterIndex = 0,
+                character = Character("Kubuś Puchatek", "Kubuś Puchatek")
+            )
+        }
     }
 }

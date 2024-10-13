@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,22 +28,19 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     onStartGame: (GameType) -> Unit = {}
 ) {
-    Scaffold { paddingValues ->
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-        LaunchedEffect(uiState) {
-            Timber.d("State: $uiState")
-        }
-        HomeScreenContent(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize(),
-            uiState = uiState,
-            onStartGame = {
-                onStartGame(it)
-                viewModel.clearSelectedType()
-            }
-        )
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    LaunchedEffect(uiState) {
+        Timber.d("State: $uiState")
     }
+    HomeScreenContent(
+        modifier = modifier
+            .fillMaxSize(),
+        uiState = uiState,
+        onStartGame = {
+            onStartGame(it)
+            viewModel.clearSelectedType()
+        }
+    )
 }
 
 @Composable
