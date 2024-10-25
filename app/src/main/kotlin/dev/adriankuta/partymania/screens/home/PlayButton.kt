@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import dev.adriankuta.partymania.R
-import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
+import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.ui.gametype.GameType
 
 @Composable

@@ -1,54 +1,34 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package dev.adriankuta.partymania.feature.game.questions
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.core.model.Character
 import dev.adriankuta.partymania.core.ui.CharacterCard
 import dev.adriankuta.partymania.core.ui.ConfirmQuitGameDialog
+import dev.adriankuta.partymania.core.ui.Counter
 import dev.adriankuta.partymania.core.ui.GameEndedDialog
 import dev.adriankuta.partymania.core.ui.NextPlayerPrompt
-import dev.adriankuta.partymania.core.ui.theme.Elevation
-import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
-import dev.adriankuta.partymania.core.ui.utils.draggable_card.CardState
-import dev.adriankuta.partymania.core.ui.utils.draggable_card.draggableCard
-import dev.adriankuta.partymania.core.ui.utils.draggable_card.rememberDraggableCardState
-import kotlinx.coroutines.launch
-import kotlin.math.min
+import dev.adriankuta.partymania.core.ui.OverlayClickableText
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun YesOrNoScreen(
@@ -103,112 +83,42 @@ private fun GameContent(
     onCountChange: (diff: Int) -> Unit,
     onNextQuestion: () -> Unit
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
+    var showHint by remember { mutableStateOf(true) }
+
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(5.seconds.inWholeMilliseconds)
+            showHint = !showHint
+        }
+    }
+
+    Box(
+        modifier = Modifier.padding(16.dp)
     ) {
-        GamePoints(
-            scoredPoints = points
+        CharacterCard(
+            character = characters[currentCharacterIndex],
+            currentCharacterIndex = currentCharacterIndex,
         )
-        Column(
-            modifier = Modifier,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            CardDeck(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(16.dp),
-                currentIndex = currentCharacterIndex,
-                characters = characters,
-                onCardDismissed = onNextQuestion
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-            NewQuestionCount(
-                questionsLeft = questionsLeft,
-                onCountChange = onCountChange
-            )
-
-        }
+        OverlayClickableText(
+            text = stringResource(R.string.next_character),
+            isVisible = showHint,
+            modifier = Modifier
+                .fillMaxHeight(0.25f)
+                .fillMaxWidth(0.5f)
+                .align(Alignment.BottomEnd)
+                .clickable { onNextQuestion() },
+            transitionTime = 3.seconds
+        )
+        Counter(
+            value = questionsLeft,
+            onCountChange = onCountChange,
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .fillMaxWidth(0.5f)
+                .fillMaxHeight(0.25f)
+                .padding(16.dp)
+        )
     }
-}
-
-@Composable
-fun CardDeck(
-    modifier: Modifier = Modifier,
-    currentIndex: Int,
-    characters: List<Character>,
-    onCardDismissed: () -> Unit
-) {
-    val visibleCards = min(3, characters.size - currentIndex)
-    val coroutineScope = rememberCoroutineScope()
-
-    Box(modifier = modifier.fillMaxSize()) {
-        repeat(visibleCards) { idx ->
-            val index = currentIndex + idx
-            var moved by remember(index) { mutableStateOf(false) }
-            val character = characters[index]
-            val zIndex = 100f - idx
-            val cardState = rememberDraggableCardState(key = index)
-
-            LaunchedEffect(moved) {
-                if (moved) {
-                    cardState.animateToState(CardState.SWIPED)
-                } else {
-                    cardState.animateToState(CardState.INITIAL)
-                }
-            }
-
-            CharacterCard(
-                modifier = Modifier
-                    .draggableCard(cardState)
-                    .zIndex(zIndex)
-                    .clickable {
-                        coroutineScope.launch {
-                            cardState.animateToState(CardState.SWIPED)
-                            onCardDismissed()
-                        }
-                    }
-                    .scrollable(rememberScrollState(), Orientation.Vertical),
-                character = character,
-                currentCharacterIndex = index
-            )
-        }
-    }
-}
-
-@Composable
-fun GamePoints(
-    modifier: Modifier = Modifier,
-    scoredPoints: Int = 0
-) {
-    Surface(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(64.dp),
-        shadowElevation = Elevation.AppBar,
-        color = MaterialTheme.colorScheme.surfaceVariant,
-    ) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text(
-                text = stringResource(R.string.scored_points, scoredPoints),
-                modifier = Modifier.align(Alignment.Center),
-                style = MaterialTheme.typography.titleLarge
-            )
-        }
-    }
-}
-
-@Composable
-fun QuestionCount(questionsLeft: Int) {
-    Text(text = buildAnnotatedString {
-        append(stringResource(id = R.string.questionsLeft) + ": ")
-        withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-            append(questionsLeft.toString())
-        }
-    })
 }
 
 

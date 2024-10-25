@@ -1,7 +1,7 @@
-package dev.adriankuta.partymania.core.ui.theme
+package dev.adriankuta.partymania.core.designsystem.theme
 
-import android.app.Activity
 import android.os.Build
+import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -11,11 +11,65 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.WindowCompat
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_background
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_error
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_errorContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_inverseOnSurface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_inversePrimary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_inverseSurface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onBackground
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onError
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onErrorContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onPrimary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onPrimaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onSecondary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onSecondaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onSurface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onSurfaceVariant
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onTertiary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_onTertiaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_outline
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_outlineVariant
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_primary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_primaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_scrim
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_secondary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_secondaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_surface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_surfaceTint
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_surfaceVariant
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_tertiary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_dark_tertiaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_background
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_error
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_errorContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_inverseOnSurface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_inversePrimary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_inverseSurface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onBackground
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onError
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onErrorContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onPrimary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onPrimaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onSecondary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onSecondaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onSurface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onSurfaceVariant
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onTertiary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_onTertiaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_outline
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_outlineVariant
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_primary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_primaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_scrim
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_secondary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_secondaryContainer
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_surface
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_surfaceTint
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_surfaceVariant
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_tertiary
+import dev.adriankuta.partymania.core.ui.theme.md_theme_light_tertiaryContainer
 
 
 private val LightColors = lightColorScheme(
@@ -99,17 +153,6 @@ fun PartyManiaTheme(
         else -> LightColors
     }
 
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colors.primary.toArgb()
-            WindowCompat
-                .getInsetsController(window, view)
-                .isAppearanceLightStatusBars = useDarkTheme
-        }
-    }
-
     MaterialTheme(
         colorScheme = colors,
         typography = Typography,
@@ -120,3 +163,6 @@ fun PartyManiaTheme(
         )
     }
 }
+
+@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
+fun supportsDynamicTheming() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S

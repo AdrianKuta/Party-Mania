@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package dev.adriankuta.partymania.core.ui
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -8,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,29 +16,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.adriankuta.partymania.core.common.Config
+import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.core.model.Character
-import dev.adriankuta.partymania.core.ui.theme.PartyManiaTheme
 
 @Composable
 fun CharacterCard(
     character: Character,
     currentCharacterIndex: Int,
-    modifier: Modifier = Modifier
-) {
-    Content(modifier, currentCharacterIndex, character)
-}
-
-@Composable
-private fun Content(
-    modifier: Modifier,
-    currentCharacterIndex: Int,
-    character: Character
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     val interactions: MutableInteractionSource = remember { MutableInteractionSource() }
 
     Card(
-        onClick = {},
-        interactionSource = interactions
+        onClick = onClick,
+        interactionSource = interactions,
+        modifier = modifier
     ) {
         Box(
             modifier = Modifier.fillMaxSize()
@@ -71,7 +61,7 @@ private fun Content(
             character.category?.let { cat ->
                 Text(
                     modifier = Modifier
-                        .align(Alignment.BottomEnd)
+                        .align(Alignment.TopEnd)
                         .padding(8.dp),
                     text = cat,
                     style = MaterialTheme.typography.labelLarge
