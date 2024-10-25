@@ -19,14 +19,14 @@ fun NextPlayerPrompt(
         ),
         confirmButton = {
             TextButton(onClick = onDismiss) {
-                Text(text = stringResource(id = R.string.done))
+                Text(text = stringResource(id = R.string.core_ui_done))
             }
         },
         title = {
-            Text(text = stringResource(R.string.next_turn))
+            Text(text = stringResource(R.string.core_ui_next_turn))
         },
         text = {
-            Text(text = stringResource(R.string.next_turn_prompt))
+            Text(text = stringResource(R.string.core_ui_next_turn_prompt))
         }
     )
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="done">Zrobione</string>
-    <string name="congratulations">Gratulacje</string>
-    <string name="close_game">Zakończ grę</string>
-    <string name="next_turn">Następna tura</string>
-    <string name="next_turn_prompt">Przekaż telefon kolejnemu graczowi</string>
-    <string name="scored_points">Udało Ci się zdobyć %dpkt.</string>
-    <string name="dialog_title_quit_game">Zakończ grę</string>
-    <string name="dialog_text_quit_game">Czy na pewno chcesz zakończyć grę i wyjść?</string>
+    <string name="core_ui_done">Zrobione</string>
+    <string name="core_ui_congratulations">Gratulacje</string>
+    <string name="core_ui_close_game">Zakończ grę</string>
+    <string name="core_ui_next_turn">Następna tura</string>
+    <string name="core_ui_next_turn_prompt">Przekaż telefon kolejnemu graczowi</string>
+    <string name="core_ui_scored_points">Udało Ci się zdobyć %dpkt.</string>
+    <string name="core_ui_dialog_title_quit_game">Zakończ grę</string>
+    <string name="core_ui_dialog_text_quit_game">Czy na pewno chcesz zakończyć grę i wyjść?</string>
+    <string name="core_ui_round">Runda</string>
 </resources>

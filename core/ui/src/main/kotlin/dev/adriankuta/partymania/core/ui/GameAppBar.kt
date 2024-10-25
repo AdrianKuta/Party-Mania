@@ -30,7 +30,7 @@ fun GameTopBar(
                 IconButton(onClick = closeGame) {
                     Icon(
                         Icons.AutoMirrored.Filled.ArrowBack,
-                        stringResource(id = R.string.close_game)
+                        stringResource(id = R.string.core_ui_close_game)
                     )
                 }
             },

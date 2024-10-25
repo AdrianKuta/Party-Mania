@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="congratulations">Gratulacje</string>
-    <string name="game_type_yes_or_no">20 pytań</string>
-    <string name="game_type_yes_or_no_description">To gra polegająca na odgadywaniu osoby za pomocą 20 pytań. Gracz na zmianę zadaje pytania o osobę, którą inni próbują odgadnąć. Pytania muszą być tak sformułowane, aby można było odpowiedzieć na nie tak lub nie. Gracz, który jako pierwszy odgadnie osobę, wygrywa.</string>
-    <string name="next_character">Następna postać</string>
-    <string name="undo">Cofnij</string>
-    <string name="questionsLeft">Pozostało pytań</string>
-    <string name="scored_points">Zdobyte punkty: %1$d</string>
-    <string name="label_question_used">Zadano 1 pytanie</string>
-    <string name="label_undo_question_used">Cofnij pytanie</string>
+    <string name="feature_game_questions_congratulations">Gratulacje</string>
+    <string name="feature_game_questions_game_type_yes_or_no">20 pytań</string>
+    <string name="feature_game_questions_game_type_yes_or_no_description">To gra polegająca na odgadywaniu osoby za pomocą 20 pytań. Gracz na zmianę zadaje pytania o osobę, którą inni próbują odgadnąć. Pytania muszą być tak sformułowane, aby można było odpowiedzieć na nie tak lub nie. Gracz, który jako pierwszy odgadnie osobę, wygrywa.</string>
+    <string name="feature_game_questions_next_character">Następna postać</string>
+    <string name="feature_game_questions_undo">Cofnij</string>
+    <string name="feature_game_questions_questions_left">Pozostało pytań</string>
+    <string name="feature_game_questions_scored_points">Zdobyte punkty: %1$d</string>
+    <string name="feature_game_questions_label_question_used">Zadano 1 pytanie</string>
+    <string name="feature_game_questions_label_undo_question_used">Cofnij pytanie</string>
 </resources>

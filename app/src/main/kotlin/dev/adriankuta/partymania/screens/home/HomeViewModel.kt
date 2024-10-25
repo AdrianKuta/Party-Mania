@@ -1,6 +1,5 @@
 package dev.adriankuta.partymania.screens.home
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +10,6 @@ import dev.adriankuta.partymania.ui.gametype.GameType.IMPROVISATIONS
 import dev.adriankuta.partymania.ui.gametype.GameType.RIDDLE
 import dev.adriankuta.partymania.ui.gametype.GameType.YES_OR_NO
 import dev.adriankuta.partymania.util.WhileUiSubscribed
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -82,7 +80,7 @@ data class GameTypeUIInfo(
             CHALLENGE -> R.string.game_type_challange
             RIDDLE ->  R.string.game_type_riddle
             IMPROVISATIONS ->  R.string.game_type_improvisation
-            YES_OR_NO -> R.string.game_type_yes_or_no
+            YES_OR_NO -> R.string.feature_game_questions_game_type_yes_or_no
         }
 
     private fun getDescriptionRes() =
@@ -90,6 +88,6 @@ data class GameTypeUIInfo(
             CHALLENGE -> R.string.game_type_challange_description
             RIDDLE ->  R.string.game_type_riddle_description
             IMPROVISATIONS ->  R.string.game_type_improvisation_description
-            YES_OR_NO -> R.string.game_type_yes_or_no_description
+            YES_OR_NO -> R.string.feature_game_questions_game_type_yes_or_no_description
         }
 }

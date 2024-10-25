@@ -19,10 +19,10 @@ fun GameEndedDialog(
             }
         },
         title = {
-            Text(text = stringResource(R.string.congratulations))
+            Text(text = stringResource(R.string.core_ui_congratulations))
         },
         text = {
-            Text(text = stringResource(R.string.scored_points, points))
+            Text(text = stringResource(R.string.core_ui_scored_points, points))
         }
     )
 }

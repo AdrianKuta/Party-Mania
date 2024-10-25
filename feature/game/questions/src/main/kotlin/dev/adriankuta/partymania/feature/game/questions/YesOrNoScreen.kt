@@ -100,7 +100,7 @@ private fun GameContent(
             currentCharacterIndex = currentCharacterIndex,
         )
         OverlayClickableText(
-            text = stringResource(R.string.next_character),
+            text = stringResource(R.string.feature_game_questions_next_character),
             isVisible = showHint,
             modifier = Modifier
                 .fillMaxHeight(0.25f)
@@ -111,6 +111,7 @@ private fun GameContent(
         )
         Counter(
             value = questionsLeft,
+            label = stringResource(R.string.feature_game_questions_questions_left),
             onCountChange = onCountChange,
             modifier = Modifier
                 .align(Alignment.BottomStart)

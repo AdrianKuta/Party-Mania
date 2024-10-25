@@ -24,10 +24,10 @@ fun ConfirmQuitGameDialog(
             }
         },
         title = {
-            Text(text = stringResource(R.string.dialog_title_quit_game))
+            Text(text = stringResource(R.string.core_ui_dialog_title_quit_game))
         },
         text = {
-            Text(text = stringResource(R.string.dialog_text_quit_game))
+            Text(text = stringResource(R.string.core_ui_dialog_text_quit_game))
         }
     )
 }

@@ -33,6 +33,7 @@ import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 @Composable
 fun Counter(
     value: Int,
+    label: String? = null,
     onCountChange: (diff: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -44,6 +45,12 @@ fun Counter(
         verticalArrangement = Arrangement.Center,
         modifier = modifier.width(IntrinsicSize.Min)
     ) {
+        if (label != null) {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelLarge
+            )
+        }
         AnimatedContent(
             modifier = Modifier,
             targetState = value,
@@ -113,6 +120,7 @@ fun CounterPreview() {
     PartyManiaTheme {
         Counter(
             value = tapCounter,
+            label = "Taps",
             onCountChange = { tapCounter += it }
         )
     }
