@@ -1,4 +1,6 @@
 import dev.adriankuta.partymania.PartyManiaBuildType
+import java.io.FileInputStream
+import java.util.Properties
 
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
@@ -14,17 +16,33 @@ android {
 
     defaultConfig {
         applicationId = "dev.adriankuta.partymania"
-        versionCode = 7
+        versionCode = 9
         versionName = "0.0.1"
-        signingConfig = signingConfigs.getByName("debug")
+        //signingConfig = signingConfigs.getByName("debug")
+    }
+
+    val keystorePropertiesFile = rootProject.file("keystore.properties")
+    val keystoreProperties = Properties()
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
     }
 
     buildTypes {
         debug {
+            signingConfig = signingConfigs.getByName("debug")
             applicationIdSuffix = PartyManiaBuildType.DEBUG.applicationIdSuffix
         }
         release {
+            signingConfig = signingConfigs.getByName("release")
             applicationIdSuffix = PartyManiaBuildType.RELEASE.applicationIdSuffix
+            isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
