@@ -1,4 +1,5 @@
 [versions]
+activityKtx = "1.10.1"
 androidDesugarJdkLibs = "2.1.2"
 androidGradlePlugin = "8.7.1"
 androidTools = "31.7.1"
@@ -10,6 +11,8 @@ androidxJunit = "1.2.1"
 androidxLifecycle = "2.8.6"
 androidxNavigation = "2.8.3"
 appcompat = "1.7.0"
+appUpdate = "2.1.0"
+appUpdateKtx = "2.1.0"
 espressoCore = "3.6.1"
 gson = "2.10.1"
 hilt = "2.52"
@@ -28,6 +31,7 @@ uiTextGoogleFonts = "1.7.4"
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -48,6 +52,8 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
+app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdate" }
+app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdateKtx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

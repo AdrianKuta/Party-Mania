@@ -16,8 +16,8 @@ android {
 
     defaultConfig {
         applicationId = "dev.adriankuta.partymania"
-        versionCode = 9
-        versionName = "0.0.1"
+        versionCode = 12
+        versionName = "0.0.1-${versionCode}"
         //signingConfig = signingConfigs.getByName("debug")
     }
 
@@ -37,14 +37,15 @@ android {
     buildTypes {
         debug {
             signingConfig = signingConfigs.getByName("debug")
+            isDebuggable = true
             applicationIdSuffix = PartyManiaBuildType.DEBUG.applicationIdSuffix
         }
         release {
             signingConfig = signingConfigs.getByName("release")
             applicationIdSuffix = PartyManiaBuildType.RELEASE.applicationIdSuffix
-            isDebuggable = false
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isDebuggable = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -61,13 +62,15 @@ android {
 
 dependencies {
 
-    implementation(projects.core.designsystem)
-    implementation(projects.feature.game.questions)
-
-    implementation(libs.timber)
-    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.app.update)
+    implementation(libs.app.update.ktx)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.timber)
+    implementation(projects.core.designsystem)
+    implementation(projects.feature.game.questions)
 
     // Architecture components
     implementation(libs.androidx.lifecycle.runtimeCompose)

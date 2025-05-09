@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.ui.PartyManiaApp
+import dev.adriankuta.partymania.util.InAppUpdates
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -39,9 +40,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-
             val darkTheme = shouldUseDarkTheme()
-
             // Update the edge to edge configuration to match the theme
             // This is the same parameters as the default enableEdgeToEdge call, but we manually
             // resolve whether or not to show dark theme using uiState, since it can be different
@@ -61,6 +60,7 @@ class MainActivity : ComponentActivity() {
             }
             PartyManiaTheme {
                 PartyManiaApp()
+                InAppUpdates()
             }
         }
     }
