@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import dev.adriankuta.partymania.PartyManiaNavGraph
 import dev.adriankuta.partymania.core.ui.theme.Elevation
+import dev.adriankuta.partymania.util.InAppUpdates
 
 @Composable
 fun PartyManiaApp(
@@ -15,8 +16,12 @@ fun PartyManiaApp(
     Surface(
         tonalElevation = Elevation.Surface
     ) {
-        Scaffold(modifier) { paddingValues ->
+        Scaffold(
+            modifier = modifier,
+            snackbarHost = { InAppUpdates() },
+        ) { paddingValues ->
             PartyManiaNavGraph(modifier.padding(paddingValues))
+
         }
     }
 }

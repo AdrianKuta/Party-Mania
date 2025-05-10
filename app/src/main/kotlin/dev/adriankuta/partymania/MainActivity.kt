@@ -16,7 +16,6 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.ui.PartyManiaApp
-import dev.adriankuta.partymania.util.InAppUpdates
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -60,7 +59,6 @@ class MainActivity : ComponentActivity() {
             }
             PartyManiaTheme {
                 PartyManiaApp()
-                InAppUpdates()
             }
         }
     }

@@ -1,4 +1,4 @@
-package dev.adriankuta.partymania.core.ui.theme
+package dev.adriankuta.partymania.core.designsystem.theme
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF825500)
