@@ -1,4 +1,4 @@
-package dev.adriankuta.partymania.core.model
+package dev.adriankuta.partymania.domain.types
 
 data class Character(
     val name: String,

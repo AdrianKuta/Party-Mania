@@ -4,12 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "dev.adriankuta.partymania.data"
+    namespace = "dev.adriankuta.partymania.domain.types"
 }
 
 dependencies {
-    implementation(projects.domain.types)
-
     implementation(projects.core.util)
     implementation(libs.gson)
     implementation(libs.timber)

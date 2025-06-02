@@ -3,8 +3,8 @@ package dev.adriankuta.partymania.feature.game.questions
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.adriankuta.partymania.core.common.Config
 import dev.adriankuta.partymania.data.FamousCharactersRepository
+import dev.adriankuta.partymania.domain.types.Character
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 data class YesNoGameUiState(
     val questionsLeft: Int? = null,
     val currentCharacterIndex: Int = 0,
-    val characters: List<dev.adriankuta.partymania.core.model.Character> = emptyList(),
+    val characters: List<Character> = emptyList(),
     val scoredPoints: Int = 0,
     val isGameEnd: Boolean = false,
     val showNextPlayerPrompt: Boolean = false,
@@ -36,7 +36,7 @@ class YesOrNoViewModel @Inject constructor(
 
     private fun loadGame() {
         viewModelScope.launch {
-            val randomCharacters = famousCharactersRepository.getRandomEntries(Config.RandomEntries)
+            val randomCharacters = famousCharactersRepository.getRandomEntries(20)
             _uiState.value = YesNoGameUiState(
                 questionsLeft = 20,
                 characters = randomCharacters,
@@ -57,7 +57,7 @@ class YesOrNoViewModel @Inject constructor(
     fun onNextCharacter() {
         _uiState.update {
             val isGameEnd = it.currentCharacterIndex + 1 >= it.characters.size
-            if (isGameEnd || it.showNextPlayerPrompt || true) {
+            if (isGameEnd || it.showNextPlayerPrompt) {
                 val newIndex =
                     if (isGameEnd) it.currentCharacterIndex else it.currentCharacterIndex + 1
                 it.copy(

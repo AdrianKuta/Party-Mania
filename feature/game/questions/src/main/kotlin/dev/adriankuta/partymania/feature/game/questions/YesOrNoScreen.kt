@@ -20,13 +20,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
-import dev.adriankuta.partymania.core.model.Character
 import dev.adriankuta.partymania.core.ui.CharacterCard
 import dev.adriankuta.partymania.core.ui.ConfirmQuitGameDialog
 import dev.adriankuta.partymania.core.ui.Counter
 import dev.adriankuta.partymania.core.ui.GameEndedDialog
 import dev.adriankuta.partymania.core.ui.NextPlayerPrompt
 import dev.adriankuta.partymania.core.ui.OverlayClickableText
+import dev.adriankuta.partymania.domain.types.Character
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
@@ -63,25 +63,24 @@ fun YesOrNoScreen(
 
     if (uiState.characters.isNotEmpty()) {
         GameContent(
-            points = uiState.scoredPoints,
             currentCharacterIndex = uiState.currentCharacterIndex,
             characters = uiState.characters,
             questionsLeft = uiState.questionsLeft ?: 0,
             onCountChange = viewModel::onAnswersChange,
-            onNextQuestion = viewModel::onNextCharacter
+            onNextQuestion = viewModel::onNextCharacter,
+            modifier = modifier,
         )
     }
 }
 
 @Composable
 private fun GameContent(
-    modifier: Modifier = Modifier,
-    points: Int,
-    currentCharacterIndex: Int = 0,
     characters: List<Character>,
     questionsLeft: Int,
     onCountChange: (diff: Int) -> Unit,
-    onNextQuestion: () -> Unit
+    onNextQuestion: () -> Unit,
+    modifier: Modifier = Modifier,
+    currentCharacterIndex: Int = 0
 ) {
     var showHint by remember { mutableStateOf(true) }
 
@@ -93,7 +92,7 @@ private fun GameContent(
     }
 
     Box(
-        modifier = Modifier.padding(16.dp)
+        modifier = modifier.padding(16.dp)
     ) {
         CharacterCard(
             character = characters[currentCharacterIndex],
@@ -132,7 +131,6 @@ private fun GameContentPreview() {
                 Character("Kubuś Puchatek", "Kubuś Puchatek"),
                 Character("Kubuś Puchatek", "Kubuś Puchatek")
             ),
-            points = 25,
             questionsLeft = 20,
             onCountChange = {},
             onNextQuestion = {})

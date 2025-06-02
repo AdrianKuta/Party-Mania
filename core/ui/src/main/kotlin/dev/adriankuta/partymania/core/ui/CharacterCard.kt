@@ -16,9 +16,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.adriankuta.partymania.core.common.Config
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
-import dev.adriankuta.partymania.core.model.Character
+import dev.adriankuta.partymania.domain.types.Character
+
+val RANDOM_ENTRIES = 20
 
 @Composable
 fun CharacterCard(
@@ -47,7 +48,7 @@ fun CharacterCard(
                     style = MaterialTheme.typography.labelSmall
                 )
                 Text(
-                    text = "${currentCharacterIndex + 1}/${Config.RandomEntries}",
+                    text = "${currentCharacterIndex + 1}/${RANDOM_ENTRIES}",
                     style = MaterialTheme.typography.labelLarge
                 )
             }
