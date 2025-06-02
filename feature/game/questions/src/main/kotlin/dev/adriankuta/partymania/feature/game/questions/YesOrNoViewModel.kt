@@ -3,8 +3,8 @@ package dev.adriankuta.partymania.feature.game.questions
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.adriankuta.partymania.data.FamousCharactersRepository
 import dev.adriankuta.partymania.domain.types.Character
+import dev.adriankuta.partymania.domain.yesorno.GetRandomCharactersUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +24,7 @@ data class YesNoGameUiState(
 
 @HiltViewModel
 class YesOrNoViewModel @Inject constructor(
-    private val famousCharactersRepository: FamousCharactersRepository
+    private val getRandomCharactersUseCase: GetRandomCharactersUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(YesNoGameUiState())
@@ -36,7 +36,7 @@ class YesOrNoViewModel @Inject constructor(
 
     private fun loadGame() {
         viewModelScope.launch {
-            val randomCharacters = famousCharactersRepository.getRandomEntries(20)
+            val randomCharacters = getRandomCharactersUseCase(20)
             _uiState.value = YesNoGameUiState(
                 questionsLeft = 20,
                 characters = randomCharacters,

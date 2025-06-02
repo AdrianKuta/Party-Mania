@@ -2,7 +2,6 @@ import dev.adriankuta.partymania.PartyManiaBuildType
 import java.io.FileInputStream
 import java.util.Properties
 
-@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.partymania.android.application)
     alias(libs.plugins.partymania.android.application.compose)
@@ -62,6 +61,15 @@ android {
 
 dependencies {
 
+    implementation(projects.core.designsystem)
+    implementation(projects.feature.game.questions)
+
+    implementation(projects.domain.yesorno)
+
+    implementation(projects.model.repository)
+    implementation(projects.model.data.room)
+    implementation(projects.model.data.simple)
+
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)
@@ -69,8 +77,6 @@ dependencies {
     implementation(libs.app.update.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.timber)
-    implementation(projects.core.designsystem)
-    implementation(projects.feature.game.questions)
 
     // Architecture components
     implementation(libs.androidx.lifecycle.runtimeCompose)

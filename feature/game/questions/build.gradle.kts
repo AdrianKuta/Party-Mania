@@ -8,8 +8,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.data)
-    implementation(projects.domain.types)
+    implementation(projects.domain.yesorno)
 
     // Compose
     implementation(libs.androidx.compose.ui)

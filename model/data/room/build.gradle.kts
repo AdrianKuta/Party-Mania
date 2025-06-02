@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "dev.adriankuta.partymania.domain.types"
+    namespace = "dev.adriankuta.partymania.model.data.room"
 }
 
 dependencies {
-    implementation(projects.core.util)
+    implementation(projects.domain.yesorno)
     implementation(libs.timber)
 }

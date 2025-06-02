@@ -29,12 +29,19 @@
             <option value="$PROJECT_DIR$/core/designsystem" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/core/util" />
-            <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/types" />
+            <option value="$PROJECT_DIR$/domain/yesorno" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/game" />
             <option value="$PROJECT_DIR$/feature/game/questions" />
+            <option value="$PROJECT_DIR$/model" />
+            <option value="$PROJECT_DIR$/model/data" />
+            <option value="$PROJECT_DIR$/model/data/room" />
+            <option value="$PROJECT_DIR$/model/data/simple" />
+            <option value="$PROJECT_DIR$/model/datasource" />
+            <option value="$PROJECT_DIR$/model/datasource/characters" />
+            <option value="$PROJECT_DIR$/model/repository" />
           </set>
         </option>
       </GradleProjectSettings>

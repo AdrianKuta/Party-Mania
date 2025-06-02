@@ -4,10 +4,9 @@ plugins {
 }
 
 android {
-    namespace = "dev.adriankuta.partymania.domain.types"
+    namespace = "dev.adriankuta.partymania.model.datasource.characters"
 }
 
 dependencies {
-    implementation(projects.core.util)
     implementation(libs.timber)
 }
