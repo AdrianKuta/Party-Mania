@@ -18,6 +18,7 @@ import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
 import dev.adriankuta.partymania.configureFlavors
 import dev.adriankuta.partymania.configureKotlinAndroid
+import dev.adriankuta.partymania.configureUnitTests
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -56,6 +57,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
                 //add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
             }
+            configureUnitTests()
         }
     }
 }
