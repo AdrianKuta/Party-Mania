@@ -19,12 +19,14 @@ data class YesNoGameUiState(
     val scoredPoints: Int = 0,
     val isGameEnd: Boolean = false,
     val showNextPlayerPrompt: Boolean = false,
-    val isQuitByUser: Boolean = false
+    val isQuitByUser: Boolean = false,
 )
+
+const val CharactersCount = 20
 
 @HiltViewModel
 class YesOrNoViewModel @Inject constructor(
-    private val getRandomCharactersUseCase: GetRandomCharactersUseCase
+    private val getRandomCharactersUseCase: GetRandomCharactersUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(YesNoGameUiState())
@@ -36,11 +38,11 @@ class YesOrNoViewModel @Inject constructor(
 
     private fun loadGame() {
         viewModelScope.launch {
-            val randomCharacters = getRandomCharactersUseCase(20)
+            val randomCharacters = getRandomCharactersUseCase(CharactersCount)
             _uiState.value = YesNoGameUiState(
-                questionsLeft = 20,
+                questionsLeft = CharactersCount,
                 characters = randomCharacters,
-                currentCharacterIndex = 0
+                currentCharacterIndex = 0,
             )
         }
     }
@@ -49,7 +51,7 @@ class YesOrNoViewModel @Inject constructor(
         _uiState.update {
             val newQuestionsCount = (it.questionsLeft ?: 0) + diff
             it.copy(
-                questionsLeft = newQuestionsCount.coerceIn(0, 20)
+                questionsLeft = newQuestionsCount.coerceIn(0, CharactersCount),
             )
         }
     }
@@ -65,21 +67,20 @@ class YesOrNoViewModel @Inject constructor(
                     questionsLeft = 20,
                     isGameEnd = isGameEnd,
                     currentCharacterIndex = newIndex,
-                    showNextPlayerPrompt = false
+                    showNextPlayerPrompt = false,
                 )
             } else {
                 it.copy(
-                    showNextPlayerPrompt = true
+                    showNextPlayerPrompt = true,
                 )
             }
-
         }
     }
 
     fun onQuitGame() {
         _uiState.update {
             it.copy(
-                isQuitByUser = true
+                isQuitByUser = true,
             )
         }
     }
@@ -88,7 +89,7 @@ class YesOrNoViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 isQuitByUser = false,
-                isGameEnd = true
+                isGameEnd = true,
             )
         }
     }

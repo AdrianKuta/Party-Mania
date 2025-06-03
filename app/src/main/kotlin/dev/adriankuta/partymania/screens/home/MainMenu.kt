@@ -25,7 +25,7 @@ fun MainMenu(
     uiState: HomeUiState,
     modifier: Modifier = Modifier,
     showOnlySelected: Boolean = false,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     BackHandler(uiState.selectedGameType != null) {
         viewModel.clearSelectedType()
@@ -33,17 +33,18 @@ fun MainMenu(
 
     val gameTypeOptions by remember(uiState.gameTypes) {
         derivedStateOf {
-            if (showOnlySelected)
+            if (showOnlySelected) {
                 listOfNotNull(uiState.selectedGameType)
-            else
+            } else {
                 uiState.gameTypes
+            }
         }
     }
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(if (showOnlySelected) 1 else 2),
         modifier = modifier
-            .height(200.dp)
+            .height(200.dp),
     ) {
         items(gameTypeOptions, key = { item -> item.title }) {
             GameTypeCard(
@@ -52,10 +53,10 @@ fun MainMenu(
                     // NicNote: Needs to be inside a LazyLayout to work
                     .animateItem()
                     .animateContentSize(
-                        animationSpec = tween()
+                        animationSpec = tween(),
                     )
                     .height(if (showOnlySelected) 200.dp else 100.dp)
-                    .padding(if (showOnlySelected) 16.dp else 4.dp)
+                    .padding(if (showOnlySelected) 16.dp else 4.dp),
             ) { typeUIInfo -> viewModel.onGameTypeSelected(typeUIInfo) }
         }
     }

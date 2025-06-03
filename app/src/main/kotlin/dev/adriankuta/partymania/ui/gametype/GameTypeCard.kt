@@ -14,33 +14,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import dev.adriankuta.partymania.core.designsystem.theme.Elevation
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
-import dev.adriankuta.partymania.core.ui.theme.Elevation
 import dev.adriankuta.partymania.screens.home.GameTypeUIInfo
 
 @Composable
 fun GameTypeCard(
     gameCardUiInfo: GameTypeUIInfo,
     modifier: Modifier = Modifier,
-    onTypeSelected: (GameTypeUIInfo) -> Unit = {}
+    onTypeSelect: (GameTypeUIInfo) -> Unit = {},
 ) {
     Card(
         modifier = modifier
-            .clickable { onTypeSelected(gameCardUiInfo) },
+            .clickable { onTypeSelect(gameCardUiInfo) },
         elevation = CardDefaults.cardElevation(
-            defaultElevation = Elevation.Card
+            defaultElevation = Elevation.Card,
         ),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 stringResource(id = gameCardUiInfo.title),
-                style = MaterialTheme.typography.labelLarge
+                style = MaterialTheme.typography.labelLarge,
             )
         }
     }
@@ -49,13 +49,13 @@ fun GameTypeCard(
 @Preview(
     widthDp = 128,
     heightDp = 128,
-    uiMode = Configuration.UI_MODE_NIGHT_NO
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
-fun GameTypeCardPreview() {
+private fun GameTypeCardPreview() {
     PartyManiaTheme {
         GameTypeCard(
-            GameTypeUIInfo(GameType.CHALLENGE)
+            GameTypeUIInfo(GameType.CHALLENGE),
         )
     }
 }
@@ -63,13 +63,13 @@ fun GameTypeCardPreview() {
 @Preview(
     widthDp = 128,
     heightDp = 128,
-    uiMode = Configuration.UI_MODE_NIGHT_YES
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
-fun GameTypeCardPreviewDarl() {
+private fun GameTypeCardPreviewDarl() {
     PartyManiaTheme {
         GameTypeCard(
-            GameTypeUIInfo(GameType.CHALLENGE)
+            GameTypeUIInfo(GameType.CHALLENGE),
         )
     }
 }

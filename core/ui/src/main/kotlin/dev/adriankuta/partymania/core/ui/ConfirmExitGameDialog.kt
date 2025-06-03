@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun ConfirmQuitGameDialog(
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -28,6 +28,6 @@ fun ConfirmQuitGameDialog(
         },
         text = {
             Text(text = stringResource(R.string.core_ui_dialog_text_quit_game))
-        }
+        },
     )
 }

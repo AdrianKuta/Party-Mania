@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun GameEndedDialog(
     points: Int,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -23,6 +23,6 @@ fun GameEndedDialog(
         },
         text = {
             Text(text = stringResource(R.string.core_ui_scored_points, points))
-        }
+        },
     )
 }

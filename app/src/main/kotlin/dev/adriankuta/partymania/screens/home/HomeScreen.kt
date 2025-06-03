@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import dev.adriankuta.partymania.core.ui.theme.ElevationTokens
+import dev.adriankuta.partymania.core.designsystem.theme.ElevationTokens
 import dev.adriankuta.partymania.ui.gametype.GameType
 import timber.log.Timber
 
@@ -26,7 +26,7 @@ import timber.log.Timber
 fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
-    onStartGame: (GameType) -> Unit = {}
+    onStartGame: (GameType) -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(uiState) {
@@ -39,7 +39,7 @@ fun HomeScreen(
         onStartGame = {
             onStartGame(it)
             viewModel.clearSelectedType()
-        }
+        },
     )
 }
 
@@ -47,58 +47,56 @@ fun HomeScreen(
 private fun HomeScreenContent(
     uiState: HomeUiState,
     modifier: Modifier = Modifier,
-    onStartGame: (GameType) -> Unit = {}
+    onStartGame: (GameType) -> Unit = {},
 ) {
     Surface(
-        tonalElevation = ElevationTokens.Level3
+        tonalElevation = ElevationTokens.Level3,
+        modifier = modifier,
     ) {
-        Column(
-            modifier = modifier
-        ) {
+        Column {
             MainMenu(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
                 uiState = uiState,
-                showOnlySelected = uiState.selectedGameType != null
+                showOnlySelected = uiState.selectedGameType != null,
             )
             GameInfo(gameTypeUiInfo = uiState.selectedGameType)
             AnimatedVisibility(
                 visible = uiState.selectedGameType != null,
                 enter = expandVertically(
-                    animationSpec = tween(delayMillis = 500)
-                )
+                    animationSpec = tween(delayMillis = 500),
+                ),
             ) {
                 PlayButton(
-                    Modifier
+                    uiState = uiState,
+                    onClick = onStartGame,
+                    modifier = Modifier
                         .padding(top = 8.dp)
                         .fillMaxWidth(),
-                    uiState = uiState,
-                    onClick = onStartGame
                 )
             }
         }
     }
 }
 
-
 @Preview()
 @Composable
-fun HomeScreenPreview() {
+private fun HomeScreenPreview() {
     HomeScreenContent(
         uiState = PreviewHomeUiState.copy(
-            selectedGameType = null
-        )
+            selectedGameType = null,
+        ),
     )
 }
 
 @Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_NO
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Composable
-fun HomeScreenGameSelectedPreview() {
+private fun HomeScreenGameSelectedPreview() {
     HomeScreenContent(
-        uiState = PreviewHomeUiState
+        uiState = PreviewHomeUiState,
     )
 }
 
@@ -107,9 +105,9 @@ val PreviewHomeUiState = HomeUiState(
         GameTypeUIInfo(GameType.CHALLENGE),
         GameTypeUIInfo(GameType.RIDDLE),
         GameTypeUIInfo(GameType.IMPROVISATIONS),
-        GameTypeUIInfo(GameType.YES_OR_NO)
+        GameTypeUIInfo(GameType.YES_OR_NO),
     ),
     selectedGameType = GameTypeUIInfo(
         GameType.CHALLENGE,
-    )
+    ),
 )

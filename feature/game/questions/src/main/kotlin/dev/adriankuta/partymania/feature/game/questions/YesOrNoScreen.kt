@@ -32,9 +32,9 @@ import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun YesOrNoScreen(
+    onGameEnd: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: YesOrNoViewModel = hiltViewModel(),
-    onGameEnd: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -45,7 +45,7 @@ fun YesOrNoScreen(
     if (uiState.isQuitByUser) {
         ConfirmQuitGameDialog(
             onConfirm = viewModel::confirmQuitGame,
-            onDismiss = viewModel::cancelQuitGame
+            onDismiss = viewModel::cancelQuitGame,
         )
     }
 
@@ -80,7 +80,7 @@ private fun GameContent(
     onCountChange: (diff: Int) -> Unit,
     onNextQuestion: () -> Unit,
     modifier: Modifier = Modifier,
-    currentCharacterIndex: Int = 0
+    currentCharacterIndex: Int = 0,
 ) {
     var showHint by remember { mutableStateOf(true) }
 
@@ -92,7 +92,7 @@ private fun GameContent(
     }
 
     Box(
-        modifier = modifier.padding(16.dp)
+        modifier = modifier.padding(16.dp),
     ) {
         CharacterCard(
             character = characters[currentCharacterIndex],
@@ -106,7 +106,7 @@ private fun GameContent(
                 .fillMaxWidth(0.5f)
                 .align(Alignment.BottomEnd)
                 .clickable { onNextQuestion() },
-            transitionTime = 3.seconds
+            transitionTime = 3.seconds,
         )
         Counter(
             value = questionsLeft,
@@ -116,11 +116,10 @@ private fun GameContent(
                 .align(Alignment.BottomStart)
                 .fillMaxWidth(0.5f)
                 .fillMaxHeight(0.25f)
-                .padding(16.dp)
+                .padding(16.dp),
         )
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
@@ -129,10 +128,11 @@ private fun GameContentPreview() {
         GameContent(
             characters = listOf(
                 Character("Kubuś Puchatek", "Kubuś Puchatek"),
-                Character("Kubuś Puchatek", "Kubuś Puchatek")
+                Character("Kubuś Puchatek", "Kubuś Puchatek"),
             ),
             questionsLeft = 20,
             onCountChange = {},
-            onNextQuestion = {})
+            onNextQuestion = {},
+        )
     }
 }

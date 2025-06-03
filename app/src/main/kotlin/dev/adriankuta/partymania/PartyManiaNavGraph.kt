@@ -17,17 +17,16 @@ fun PartyManiaNavGraph(
     startDestination: String = PartyManiaDestinations.HOME_ROUTE,
     navActions: PartyManiaNavigationActions = remember(navController) {
         PartyManiaNavigationActions(navController)
-    }
+    },
 ) {
-
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = modifier
+        modifier = modifier,
     ) {
         composable(PartyManiaDestinations.HOME_ROUTE) {
             HomeScreen(
-                onStartGame = navActions::navigateToGame
+                onStartGame = navActions::navigateToGame,
             )
         }
         questionsGameScreen { navController.navigateUp() }

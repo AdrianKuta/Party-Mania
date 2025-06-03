@@ -23,9 +23,8 @@ import dev.adriankuta.partymania.ui.gametype.GameType
 @Composable
 fun GameInfo(
     gameTypeUiInfo: GameTypeUIInfo?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-
     var lastUiInfo by remember { mutableStateOf(gameTypeUiInfo) }
     if (gameTypeUiInfo != null) {
         lastUiInfo = gameTypeUiInfo
@@ -34,19 +33,20 @@ fun GameInfo(
     AnimatedVisibility(
         visible = gameTypeUiInfo != null,
         enter = slideInVertically(
-            animationSpec = tween(delayMillis = 250)
+            animationSpec = tween(delayMillis = 250),
         ) + fadeIn(animationSpec = tween(delayMillis = 250)),
-        exit = fadeOut() + shrinkVertically()
+        exit = fadeOut() + shrinkVertically(),
+        modifier = modifier,
     ) {
         lastUiInfo?.let { uiInfo ->
             Column {
                 Text(
                     text = stringResource(id = uiInfo.title),
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
                     text = stringResource(id = uiInfo.description),
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         }
@@ -55,10 +55,10 @@ fun GameInfo(
 
 @Preview
 @Composable
-fun GameInfoPreview() {
+private fun GameInfoPreview() {
     PartyManiaTheme {
         GameInfo(
-            gameTypeUiInfo = GameTypeUIInfo(GameType.CHALLENGE)
+            gameTypeUiInfo = GameTypeUIInfo(GameType.CHALLENGE),
         )
     }
 }

@@ -18,11 +18,10 @@ import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-
 data class HomeUiState(
     val isLoading: Boolean = false,
     val gameTypes: List<GameTypeUIInfo> = emptyList(),
-    val selectedGameType: GameTypeUIInfo? = null
+    val selectedGameType: GameTypeUIInfo? = null,
 )
 
 @HiltViewModel
@@ -35,13 +34,15 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         _isLoading.value = false
     }.shareIn(
         scope = viewModelScope,
-        started = WhileUiSubscribed
+        started = WhileUiSubscribed,
     ).combine(_selectedGameType) { gameTypes, selectedType ->
         gameTypes.filter { type -> selectedType == null || type.title == selectedType.title }
     }
 
     val uiState: StateFlow<HomeUiState> = combine(
-        _isLoading, _selectedGameType, _gameTypesRepo
+        _isLoading,
+        _selectedGameType,
+        _gameTypesRepo,
     ) { isLoading, gameType, gameTypes ->
         if (isLoading) {
             HomeUiState(isLoading = true)
@@ -51,7 +52,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     }.stateIn(
         scope = viewModelScope,
         started = WhileUiSubscribed,
-        initialValue = HomeUiState(isLoading = true)
+        initialValue = HomeUiState(isLoading = true),
     )
 
     fun onGameTypeSelected(gameTypeUIInfo: GameTypeUIInfo) {
@@ -63,7 +64,6 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     fun clearSelectedType() {
         _selectedGameType.value = null
     }
-
 }
 
 data class GameTypeUIInfo(
@@ -78,16 +78,16 @@ data class GameTypeUIInfo(
     private fun getTitleRes() =
         when (gameType) {
             CHALLENGE -> R.string.game_type_challange
-            RIDDLE ->  R.string.game_type_riddle
-            IMPROVISATIONS ->  R.string.game_type_improvisation
+            RIDDLE -> R.string.game_type_riddle
+            IMPROVISATIONS -> R.string.game_type_improvisation
             YES_OR_NO -> R.string.feature_game_questions_game_type_yes_or_no
         }
 
     private fun getDescriptionRes() =
         when (gameType) {
             CHALLENGE -> R.string.game_type_challange_description
-            RIDDLE ->  R.string.game_type_riddle_description
-            IMPROVISATIONS ->  R.string.game_type_improvisation_description
+            RIDDLE -> R.string.game_type_riddle_description
+            IMPROVISATIONS -> R.string.game_type_improvisation_description
             YES_OR_NO -> R.string.feature_game_questions_game_type_yes_or_no_description
         }
 }

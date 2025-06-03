@@ -12,9 +12,9 @@ import dev.adriankuta.partymania.ui.gametype.GameType
 
 @Composable
 fun PlayButton(
-    modifier: Modifier = Modifier,
     uiState: HomeUiState,
-    onClick: (gameType: GameType) -> Unit
+    onClick: (gameType: GameType) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Button(
         modifier = modifier,
@@ -22,14 +22,15 @@ fun PlayButton(
             uiState.selectedGameType?.let {
                 onClick(it.gameType)
             }
-        }) {
+        },
+    ) {
         Text(text = stringResource(id = R.string.start_game))
     }
 }
 
 @Preview
 @Composable
-fun PlayButtonPreview() {
+private fun PlayButtonPreview() {
     PartyManiaTheme {
         PlayButton(uiState = PreviewHomeUiState, onClick = { _ -> })
     }

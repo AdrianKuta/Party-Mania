@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
         var isLoading: Boolean by mutableStateOf(true)
 
         lifecycleScope.launch {
+            @Suppress("MagicNumber")
             delay(500)
             isLoading = false
         }
@@ -64,14 +65,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 /**
  * Returns `true` if dark theme should be used, as a function of the [uiState] and the
  * current system context.
  */
 @Composable
-private fun shouldUseDarkTheme(
-): Boolean = isSystemInDarkTheme()
+private fun shouldUseDarkTheme(): Boolean = isSystemInDarkTheme()
 
 /**
  * The default light scrim, as defined by androidx and the platform:

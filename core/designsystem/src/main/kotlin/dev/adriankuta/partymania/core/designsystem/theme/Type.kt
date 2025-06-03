@@ -15,7 +15,7 @@ import dev.adriankuta.partymania.core.designsystem.R
 val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
-    certificates = R.array.com_google_android_gms_fonts_certs
+    certificates = R.array.com_google_android_gms_fonts_certs,
 )
 val fontName = GoogleFont("Roboto")
 

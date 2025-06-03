@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
 
-
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -45,8 +44,6 @@ private val LightColors = lightColorScheme(
     outlineVariant = md_theme_light_outlineVariant,
     scrim = md_theme_light_scrim,
 )
-
-
 private val DarkColors = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
@@ -82,13 +79,16 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun PartyManiaTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
     val colors = when {
         (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) -> {
-            if (useDarkTheme) dynamicDarkColorScheme(context)
-            else dynamicLightColorScheme(context)
+            if (useDarkTheme) {
+                dynamicDarkColorScheme(context)
+            } else {
+                dynamicLightColorScheme(context)
+            }
         }
 
         useDarkTheme -> DarkColors
@@ -101,7 +101,7 @@ fun PartyManiaTheme(
     ) {
         CompositionLocalProvider(
             LocalContentColor provides MaterialTheme.colorScheme.onBackground,
-            content = content
+            content = content,
         )
     }
 }

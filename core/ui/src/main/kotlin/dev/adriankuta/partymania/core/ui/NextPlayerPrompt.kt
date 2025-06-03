@@ -9,13 +9,13 @@ import androidx.compose.ui.window.DialogProperties
 
 @Composable
 fun NextPlayerPrompt(
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
             dismissOnBackPress = false,
-            dismissOnClickOutside = false
+            dismissOnClickOutside = false,
         ),
         confirmButton = {
             TextButton(onClick = onDismiss) {
@@ -27,6 +27,6 @@ fun NextPlayerPrompt(
         },
         text = {
             Text(text = stringResource(R.string.core_ui_next_turn_prompt))
-        }
+        },
     )
 }

@@ -19,24 +19,24 @@ import androidx.compose.ui.unit.dp
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.domain.types.Character
 
-val RANDOM_ENTRIES = 20
+const val RandomEntries = 20
 
 @Composable
 fun CharacterCard(
     character: Character,
     currentCharacterIndex: Int,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
 ) {
     val interactions: MutableInteractionSource = remember { MutableInteractionSource() }
 
     Card(
         onClick = onClick,
         interactionSource = interactions,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {
             Column(
                 modifier = Modifier
@@ -45,11 +45,11 @@ fun CharacterCard(
             ) {
                 Text(
                     text = stringResource(R.string.core_ui_round),
-                    style = MaterialTheme.typography.labelSmall
+                    style = MaterialTheme.typography.labelSmall,
                 )
                 Text(
-                    text = "${currentCharacterIndex + 1}/${RANDOM_ENTRIES}",
-                    style = MaterialTheme.typography.labelLarge
+                    text = "${currentCharacterIndex + 1}/$RandomEntries",
+                    style = MaterialTheme.typography.labelLarge,
                 )
             }
             Text(
@@ -57,7 +57,7 @@ fun CharacterCard(
                     .align(Alignment.Center),
                 text = character.name,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.displayMedium
+                style = MaterialTheme.typography.displayMedium,
             )
 
             character.category?.let { cat ->
@@ -66,7 +66,7 @@ fun CharacterCard(
                         .align(Alignment.TopEnd)
                         .padding(8.dp),
                     text = cat,
-                    style = MaterialTheme.typography.labelLarge
+                    style = MaterialTheme.typography.labelLarge,
                 )
             }
         }
@@ -81,7 +81,7 @@ private fun CardPreview() {
             CharacterCard(
                 modifier = Modifier.fillMaxSize(),
                 currentCharacterIndex = 0,
-                character = Character("Kubuś Puchatek", "Kubuś Puchatek")
+                character = Character("Kubuś Puchatek", "Kubuś Puchatek"),
             )
         }
     }

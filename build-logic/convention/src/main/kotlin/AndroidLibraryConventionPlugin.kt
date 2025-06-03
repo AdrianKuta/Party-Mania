@@ -16,6 +16,7 @@
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
+import dev.adriankuta.partymania.configureDetektDependencies
 import dev.adriankuta.partymania.configureFlavors
 import dev.adriankuta.partymania.configureKotlinAndroid
 import dev.adriankuta.partymania.configureUnitTests
@@ -30,6 +31,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
+                apply("io.gitlab.arturbosch.detekt")
                 apply("org.jetbrains.kotlin.android")
                 apply("partymania.android.lint")
             }
@@ -57,6 +59,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
                 //add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
             }
+            configureDetektDependencies()
             configureUnitTests()
         }
     }

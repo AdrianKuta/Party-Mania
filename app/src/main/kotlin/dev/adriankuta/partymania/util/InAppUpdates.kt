@@ -56,8 +56,8 @@ fun InAppUpdates(
     LaunchedEffect(Unit) {
         try {
             val appUpdateInfo = appUpdateManager.checkUpdateInfo()
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(updateType)
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE &&
+                appUpdateInfo.isUpdateTypeAllowed(updateType)
             ) {
                 appUpdateManager.startUpdateFlow(
                     appUpdateInfo,

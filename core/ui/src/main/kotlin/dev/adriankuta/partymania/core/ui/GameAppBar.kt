@@ -20,9 +20,11 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun GameTopBar(
     @StringRes gameName: Int,
-    closeGame: () -> Unit
+    closeGame: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
+        modifier = modifier,
     ) {
         TopAppBar(
             title = { Text(text = stringResource(id = gameName)) },
@@ -30,14 +32,14 @@ fun GameTopBar(
                 IconButton(onClick = closeGame) {
                     Icon(
                         Icons.AutoMirrored.Filled.ArrowBack,
-                        stringResource(id = R.string.core_ui_close_game)
+                        stringResource(id = R.string.core_ui_close_game),
                     )
                 }
             },
             modifier = Modifier.fillMaxWidth(),
             colors = topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
-            )
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            ),
         )
     }
 }

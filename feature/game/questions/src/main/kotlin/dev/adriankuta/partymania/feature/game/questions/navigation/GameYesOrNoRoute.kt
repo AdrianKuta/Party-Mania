@@ -14,11 +14,11 @@ fun NavController.navigateToGameYesOrNo(navOptions: NavOptions) =
     navigate(GameYesOrNoRoute, navOptions)
 
 fun NavGraphBuilder.questionsGameScreen(
-    onGameEnd: () -> Unit
+    onGameEnd: () -> Unit,
 ) {
     composable<GameYesOrNoRoute> {
         YesOrNoScreen(
-            onGameEnd = onGameEnd
+            onGameEnd = onGameEnd,
         )
     }
 }

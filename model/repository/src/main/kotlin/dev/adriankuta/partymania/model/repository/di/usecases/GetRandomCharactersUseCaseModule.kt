@@ -15,6 +15,4 @@ internal abstract class GetRandomCharactersUseCaseModule {
     abstract fun bind(
         getRandomCharactersUseCaseImpl: GetRandomCharactersUseCaseImpl
     ): GetRandomCharactersUseCase
-
-
 }

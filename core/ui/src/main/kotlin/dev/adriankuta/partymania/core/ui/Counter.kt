@@ -30,25 +30,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 
+@Suppress("LongMethod")
 @Composable
 fun Counter(
     value: Int,
-    label: String? = null,
     onCountChange: (diff: Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    label: String? = null,
 ) {
-
     val view = LocalView.current
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = modifier.width(IntrinsicSize.Min)
+        modifier = modifier.width(IntrinsicSize.Min),
     ) {
         if (label != null) {
             Text(
                 text = label,
-                style = MaterialTheme.typography.labelLarge
+                style = MaterialTheme.typography.labelLarge,
             )
         }
         AnimatedContent(
@@ -58,14 +58,14 @@ fun Counter(
             transitionSpec = {
                 if (targetState > initialState) {
                     scaleIn() + slideInHorizontally { it / 2 } togetherWith
-                            scaleOut() + slideOutHorizontally { -it / 2 } using
-                            SizeTransform(clip = false)
+                        scaleOut() + slideOutHorizontally { -it / 2 } using
+                        SizeTransform(clip = false)
                 } else {
                     scaleIn() + slideInHorizontally { -it / 2 } togetherWith
-                            scaleOut() + slideOutHorizontally { it / 2 } using
-                            SizeTransform(clip = false)
+                        scaleOut() + slideOutHorizontally { it / 2 } using
+                        SizeTransform(clip = false)
                 }
-            }
+            },
         ) { state ->
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -77,7 +77,7 @@ fun Counter(
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Button(
                 modifier = Modifier.weight(1f),
@@ -86,11 +86,11 @@ fun Counter(
                     onCountChange(-1)
                 },
                 shape = MaterialTheme.shapes.medium,
-                enabled = value > 0
+                enabled = value > 0,
             ) {
                 Text(
                     text = "-",
-                    style = MaterialTheme.typography.labelLarge
+                    style = MaterialTheme.typography.labelLarge,
                 )
             }
             Button(
@@ -100,11 +100,11 @@ fun Counter(
                     onCountChange(1)
                 },
                 shape = MaterialTheme.shapes.medium,
-                enabled = value < 20
+                enabled = value < 20,
             ) {
                 Text(
                     text = "+",
-                    style = MaterialTheme.typography.labelLarge
+                    style = MaterialTheme.typography.labelLarge,
                 )
             }
         }
@@ -113,7 +113,7 @@ fun Counter(
 
 @Preview(showBackground = true)
 @Composable
-fun CounterPreview() {
+private fun CounterPreview() {
     var tapCounter by remember {
         mutableIntStateOf(20)
     }
@@ -121,7 +121,7 @@ fun CounterPreview() {
         Counter(
             value = tapCounter,
             label = "Taps",
-            onCountChange = { tapCounter += it }
+            onCountChange = { tapCounter += it },
         )
     }
 }

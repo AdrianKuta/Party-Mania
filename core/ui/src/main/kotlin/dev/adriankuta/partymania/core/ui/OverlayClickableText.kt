@@ -25,7 +25,7 @@ fun OverlayClickableText(
     text: String,
     modifier: Modifier = Modifier,
     isVisible: Boolean = true,
-    transitionTime: Duration = 250.milliseconds
+    transitionTime: Duration = 250.milliseconds,
 ) {
     val contentColor = MaterialTheme.colorScheme.primary
     AnimatedContent(
@@ -33,21 +33,21 @@ fun OverlayClickableText(
         modifier = modifier,
         transitionSpec = {
             fadeIn(tween(transitionTime.inWholeMilliseconds.toInt())) togetherWith
-                    fadeOut(tween(transitionTime.inWholeMilliseconds.toInt()))
+                fadeOut(tween(transitionTime.inWholeMilliseconds.toInt()))
         },
-        label = "$text overlay visibility"
+        label = "$text overlay visibility",
     ) { targetVisibility ->
         Box(
             modifier = Modifier
                 .alpha(if (targetVisibility) 0.25f else 0.1f)
                 .fillMaxSize()
-                .border(4.dp, contentColor)
+                .border(4.dp, contentColor),
         ) {
             Text(
                 text,
                 modifier = Modifier.align(Alignment.Center),
                 color = contentColor,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
             )
         }
     }

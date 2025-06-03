@@ -15,6 +15,7 @@
  */
 
 import com.android.build.api.dsl.ApplicationExtension
+import dev.adriankuta.partymania.configureDetektDependencies
 import dev.adriankuta.partymania.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -25,6 +26,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.application")
+                apply("io.gitlab.arturbosch.detekt")
                 apply("org.jetbrains.kotlin.android")
                 apply("partymania.android.lint")
             }
@@ -35,6 +37,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 @Suppress("UnstableApiUsage")
                 testOptions.animationsDisabled = true
                 //configureGradleManagedDevices(this)
+                configureDetektDependencies()
             }
         }
     }

@@ -1,0 +1,33 @@
+# Exceptions for compose. See https://detekt.dev/docs/introduction/compose
+naming:
+  FunctionNaming:
+    functionPattern: '[a-zA-Z][a-zA-Z0-9]*'
+
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][A-Za-z0-9]*'
+
+complexity:
+  LongParameterList:
+    ignoreAnnotated: [ 'Composable' ]
+  TooManyFunctions:
+    ignoreAnnotatedFunctions: [ 'Preview' ]
+
+style:
+  MagicNumber:
+    ignorePropertyDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreAnnotated: [ 'Composable' ]
+
+  UnusedPrivateMember:
+    ignoreAnnotated: [ 'Composable' ]
+
+# Deviations from defaults
+formatting:
+  TrailingCommaOnCallSite:
+    active: true
+    autoCorrect: true
+    useTrailingCommaOnCallSite: true
+  TrailingCommaOnDeclarationSite:
+    active: true
+    autoCorrect: true
+    useTrailingCommaOnDeclarationSite: true

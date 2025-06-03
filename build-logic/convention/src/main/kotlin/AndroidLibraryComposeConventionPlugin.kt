@@ -16,6 +16,7 @@
 
 import com.android.build.gradle.LibraryExtension
 import dev.adriankuta.partymania.configureAndroidCompose
+import dev.adriankuta.partymania.configureDetektForComposeModuleExceptions
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -29,6 +30,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
 
             val extension = extensions.getByType<LibraryExtension>()
             configureAndroidCompose(extension)
+            configureDetektForComposeModuleExceptions()
         }
     }
 

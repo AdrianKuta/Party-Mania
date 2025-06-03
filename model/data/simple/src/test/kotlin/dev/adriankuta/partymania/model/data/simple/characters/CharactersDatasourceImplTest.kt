@@ -66,6 +66,7 @@ class CharactersDatasourceImplTest {
     }
 
     @Test
+    @Suppress("Indentation")
     fun `getRandomCharacters returns all characters when count is greater than available characters`() =
         runTest {
             // Given
@@ -162,8 +163,10 @@ class CharactersDatasourceImplTest {
         """.trimIndent()
 
         // We need to mock the asset manager for each call separately
-        every { assetManager.open("characters.json") } returns ByteArrayInputStream(jsonContent.toByteArray()) andThen ByteArrayInputStream(
-            jsonContent.toByteArray()
+        every {
+            assetManager.open("characters.json")
+        } returns ByteArrayInputStream(jsonContent.toByteArray()) andThen ByteArrayInputStream(
+            jsonContent.toByteArray(),
         )
 
         // When
