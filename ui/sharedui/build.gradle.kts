@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.partymania.android.library)
+    alias(libs.plugins.partymania.android.library.compose)
     alias(libs.plugins.partymania.android.library.hilt)
 }
 
 android {
-    namespace = "dev.adriankuta.partymania.model.datasource.characters"
+    namespace = "dev.adriankuta.partymania.ui.sharedui"
 }
 
 dependencies {

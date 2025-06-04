@@ -35,7 +35,6 @@ kotlin {
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
-    compileOnly(libs.android.tools.common)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.detekt.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
@@ -46,46 +45,31 @@ gradlePlugin {
     /**
      * Register convention plugins so they are available in the build scripts of the application
      */
+
     plugins {
-        register("androidApplicationCompose") {
-            id = "partymania.android.application.compose"
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
-        }
-        register("androidApplication") {
-            id = "partymania.android.application"
-            implementationClass = "AndroidApplicationConventionPlugin"
+        register("androidLibrary") {
+            id = "partymania.android.library"
+            implementationClass = "AndroidLibraryConvention"
         }
         register("androidLibraryCompose") {
             id = "partymania.android.library.compose"
-            implementationClass = "AndroidLibraryComposeConventionPlugin"
+            implementationClass = "AndroidLibraryComposeConvention"
         }
-        register("androidLibrary") {
-            id = "partymania.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
+        register("androidApplication") {
+            id = "partymania.android.application"
+            implementationClass = "AndroidApplicationConvention"
         }
-        register("androidFeature") {
-            id = "partymania.android.feature"
-            implementationClass = "AndroidFeatureConventionPlugin"
+        register("androidApplicationCompose") {
+            id = "partymania.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConvention"
         }
-        register("androidTest") {
-            id = "partymania.android.test"
-            implementationClass = "AndroidTestConventionPlugin"
+        register("androidApplicationHilt") {
+            id = "partymania.android.application.hilt"
+            implementationClass = "AndroidApplicationHiltConvention"
         }
-        register("hilt") {
-            id = "partymania.hilt"
-            implementationClass = "HiltConventionPlugin"
-        }
-        register("androidFlavors") {
-            id = "partymania.android.application.flavors"
-            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
-        }
-        register("androidLint") {
-            id = "partymania.android.lint"
-            implementationClass = "AndroidLintConventionPlugin"
-        }
-        register("jvmLibrary") {
-            id = "partymania.jvm.library"
-            implementationClass = "JvmLibraryConventionPlugin"
+        register("androidLibraryHilt") {
+            id = "partymania.android.library.hilt"
+            implementationClass = "AndroidLibraryHiltConvention"
         }
     }
 }

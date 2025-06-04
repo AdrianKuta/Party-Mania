@@ -1,13 +1,10 @@
-import dev.adriankuta.partymania.PartyManiaBuildType
 import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
-    alias(libs.plugins.partymania.android.application)
-    alias(libs.plugins.partymania.android.application.compose)
-    alias(libs.plugins.partymania.android.application.flavors)
-    alias(libs.plugins.partymania.hilt)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.partymania.android.application.compose)
+    alias(libs.plugins.partymania.android.application.hilt)
 }
 
 android {
@@ -37,11 +34,9 @@ android {
         debug {
             signingConfig = signingConfigs.getByName("debug")
             isDebuggable = true
-            applicationIdSuffix = PartyManiaBuildType.DEBUG.applicationIdSuffix
         }
         release {
             signingConfig = signingConfigs.getByName("release")
-            applicationIdSuffix = PartyManiaBuildType.RELEASE.applicationIdSuffix
             isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
@@ -69,35 +64,4 @@ dependencies {
     implementation(projects.model.repository)
     implementation(projects.model.data.room)
     implementation(projects.model.data.simple)
-
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.app.update)
-    implementation(libs.app.update.ktx)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.timber)
-
-    // Architecture components
-    implementation(libs.androidx.lifecycle.runtimeCompose)
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.activity.compose)
-
-    // Jetpack Compose
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.preview)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.navigation.compose)
-
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-    testImplementation(libs.junit4)
-
-    androidTestImplementation(libs.junit4)
-    androidTestImplementation(libs.androidx.test.ext)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit)
 }

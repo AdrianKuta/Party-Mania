@@ -15,23 +15,38 @@
  */
 
 import com.android.build.api.dsl.ApplicationExtension
-import dev.adriankuta.partymania.configureAndroidCompose
+import dev.adriankuta.partymania.configureCompose
 import dev.adriankuta.partymania.configureDetektForComposeModuleExceptions
+import dev.adriankuta.partymania.configureInstrumentation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.apply
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
-class AndroidApplicationComposeConventionPlugin : Plugin<Project> {
+@Suppress("unused") // This is called as a string in the gradle plugin block
+class AndroidApplicationComposeConvention : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "com.android.application")
-            apply(plugin = "org.jetbrains.kotlin.plugin.compose")
-
+            pluginManager.apply("partymania.android.application")
             val extension = extensions.getByType<ApplicationExtension>()
-            configureAndroidCompose(extension)
+
+            extensions.configure<ApplicationExtension> {
+                defaultConfig {
+                    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                }
+            }
+
+            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
+            configureInstrumentation()
+            configureCompose(extension)
             configureDetektForComposeModuleExceptions()
+
+            dependencies {
+                "androidTestImplementation"(libs.findLibrary("androidx.test.core").get())
+            }
         }
     }
-
 }
