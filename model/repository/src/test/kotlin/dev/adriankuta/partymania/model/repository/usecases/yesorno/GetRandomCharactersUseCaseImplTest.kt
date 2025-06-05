@@ -6,8 +6,8 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 class GetRandomCharactersUseCaseImplTest {
 
@@ -17,7 +17,7 @@ class GetRandomCharactersUseCaseImplTest {
         val testCharacters = listOf(
             CharacterModel("Character 1", "Category 1"),
             CharacterModel("Character 2", "Category 2"),
-            CharacterModel("Character 3", "Category 3")
+            CharacterModel("Character 3", "Category 3"),
         )
         val mockDatasource = mockk<CharactersDatasource>()
         coEvery { mockDatasource.getRandomCharacters(3) } returns testCharacters
@@ -44,7 +44,7 @@ class GetRandomCharactersUseCaseImplTest {
         // Given
         val testCharacters = listOf(
             CharacterModel("Character 1", "Category 1"),
-            CharacterModel("Character 2", "Category 2")
+            CharacterModel("Character 2", "Category 2"),
         )
         val mockDatasource = mockk<CharactersDatasource>()
         coEvery { mockDatasource.getRandomCharacters(2) } returns testCharacters
@@ -69,7 +69,7 @@ class GetRandomCharactersUseCaseImplTest {
         // Given
         val testCharacters = listOf(
             CharacterModel("Character 1", "Category 1"),
-            CharacterModel("Character 2", "Category 2")
+            CharacterModel("Character 2", "Category 2"),
         )
         val mockDatasource = mockk<CharactersDatasource>()
         coEvery { mockDatasource.getRandomCharacters(5) } returns testCharacters
@@ -111,7 +111,7 @@ class GetRandomCharactersUseCaseImplTest {
         runTest {
             // Given
             val testCharacters = listOf(
-                CharacterModel("Character 1", null)
+                CharacterModel("Character 1", null),
             )
             val mockDatasource = mockk<CharactersDatasource>()
             coEvery { mockDatasource.getRandomCharacters(1) } returns testCharacters

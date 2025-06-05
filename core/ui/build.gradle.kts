@@ -1,5 +1,4 @@
 plugins {
-    alias(libs.plugins.partymania.android.library)
     alias(libs.plugins.partymania.android.library.compose)
 }
 

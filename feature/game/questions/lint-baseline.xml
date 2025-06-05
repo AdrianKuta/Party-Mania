@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues name="AGP (8.10.1)" by="lint 8.10.1" client="gradle" dependencies="false" format="6"
+    type="baseline" variant="all" version="8.10.1">
+
+    <issue id="Aligned16KB"
+        message="The native library `arm64-v8a/libmockkjvmtiagent.so` (from `io.mockk:mockk-agent-android:1.14.2`) is not 16 KB aligned">
+        <location
+            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/076ee1e96bcc02a2c7bb06de84e586fe/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
+    </issue>
+
+    <issue id="Aligned16KB"
+        message="The native library `arm64-v8a/libmockkjvmtiagent.so` (from `io.mockk:mockk-agent-android:1.14.2`) is not 16 KB aligned">
+        <location
+            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/076ee1e96bcc02a2c7bb06de84e586fe/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
+    </issue>
+
+    <issue id="IconLocation"
+        message="Found bitmap drawable `res/drawable/feature_game_questions_blur_background.webp` in densityless folder">
+        <location file="src/main/res/drawable/feature_game_questions_blur_background.webp" />
+    </issue>
+
+    <issue id="IconLocation"
+        message="Found bitmap drawable `res/drawable/feature_game_questions_winnie_the_pooh.webp` in densityless folder">
+        <location file="src/main/res/drawable/feature_game_questions_winnie_the_pooh.webp" />
+    </issue>
+
+</issues>

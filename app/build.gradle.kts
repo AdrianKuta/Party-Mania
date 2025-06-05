@@ -42,7 +42,7 @@ android {
             isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -64,4 +64,9 @@ dependencies {
     implementation(projects.model.repository)
     implementation(projects.model.data.room)
     implementation(projects.model.data.simple)
+
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.app.update.ktx)
 }

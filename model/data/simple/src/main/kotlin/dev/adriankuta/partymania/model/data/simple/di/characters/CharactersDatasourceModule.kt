@@ -18,11 +18,11 @@ internal class CharactersDatasourceModule {
     @Provides
     fun provideCharactersDatasource(
         @ApplicationContext context: Context,
-        @IoDispatcher dispatcher: CoroutineDispatcher
+        @IoDispatcher dispatcher: CoroutineDispatcher,
     ): CharactersDatasource {
         return CharactersDatasourceImpl(
             context = context,
-            dispatcher = dispatcher
+            dispatcher = dispatcher,
         )
     }
 }

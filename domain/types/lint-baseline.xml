@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues name="AGP (8.10.1)" by="lint 8.10.1" client="gradle" dependencies="false" format="6"
+    type="baseline" variant="all" version="8.10.1">
+
+    <issue id="Aligned16KB"
+        message="The native library `arm64-v8a/libmockkjvmtiagent.so` (from `io.mockk:mockk-agent-android:1.14.2`) is not 16 KB aligned">
+        <location
+            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/7d651986ce68bf714d1082b3b9727f5f/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
+    </issue>
+
+</issues>

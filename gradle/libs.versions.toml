@@ -1,6 +1,6 @@
 [versions]
-targetSdk = "35"
-compileSdk = "35" # Has to be 34 for Weavr
+targetSdk = "36"
+compileSdk = "36" # Has to be 34 for Weavr
 minSdk = "21"
 
 activityKtx = "1.10.1"
@@ -14,7 +14,6 @@ androidxCoreSplashscreen = "1.0.1"
 androidxJunit = "1.2.1"
 androidxLifecycle = "2.9.0"
 androidxNavigation = "2.9.0"
-appUpdate = "2.1.0"
 appUpdateKtx = "2.1.0"
 appcompat = "1.7.0"
 coreTest = "1.6.1" # https://developer.android.com/jetpack/androidx/releases/test
@@ -68,7 +67,6 @@ androidx-test-rules = { module = "androidx.test:rules", version.ref = "testRules
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "testRunner" }
 androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiAutomator" }
 androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
-app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdate" }
 app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdateKtx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 detekt-compose = { module = "io.nlopez.compose.rules:detekt", version.ref = "detektCompose" }
