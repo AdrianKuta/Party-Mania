@@ -1,12 +1,16 @@
 package dev.adriankuta.partymania.ui.truthordare
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.adriankuta.partymania.core.designsystem.theme.PreviewDevices
+import dev.adriankuta.partymania.ui.truthordare.components.AnimatedCurvedTopBar
 import dev.adriankuta.partymania.ui.truthordare.navigation.GameVariant
 
 @Composable
@@ -26,10 +30,15 @@ private fun TruthOrDareScreen(
     gameUiState: TruthOrDareUiState,
     modifier: Modifier = Modifier,
 ) {
-    Text(
-        text = gameUiState.variant.name,
-        modifier = modifier,
-    )
+    Column {
+        AnimatedCurvedTopBar {
+            Text(
+                text = gameUiState.variant.name,
+                style = MaterialTheme.typography.displaySmall,
+                modifier = modifier.align(Alignment.Center),
+            )
+        }
+    }
 }
 
 @PreviewDevices
