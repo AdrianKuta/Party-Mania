@@ -59,6 +59,7 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.feature.game.questions)
 
+    implementation(projects.domain.gametypes)
     implementation(projects.domain.yesorno)
 
     implementation(projects.model.repository)
@@ -66,6 +67,7 @@ dependencies {
     implementation(projects.model.data.simple)
 
     implementation(projects.ui.home)
+    implementation(projects.ui.truthordare)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)

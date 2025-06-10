@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import dev.adriankuta.partymania.PartyManiaNavGraph
 import dev.adriankuta.partymania.core.designsystem.theme.Elevation
-import dev.adriankuta.partymania.util.InAppUpdates
 
 @Composable
 fun PartyManiaApp(

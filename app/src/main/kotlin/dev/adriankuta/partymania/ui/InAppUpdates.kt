@@ -1,4 +1,4 @@
-package dev.adriankuta.partymania.util
+package dev.adriankuta.partymania.ui
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.material3.SnackbarHost

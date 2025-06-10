@@ -21,15 +21,20 @@ import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 internal fun HomeScreen(
+    onGameSelect: (GameType) -> Unit,
     viewModel: HomeScreenViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    HomeScreen(uiState = uiState)
+    HomeScreen(
+        uiState = uiState,
+        onGameSelect = onGameSelect,
+    )
 }
 
 @Composable
 private fun HomeScreen(
     uiState: HomeUiState,
+    onGameSelect: (GameType) -> Unit,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -41,6 +46,7 @@ private fun HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(2f),
+                onClick = { onGameSelect(type) },
             )
         }
     }
@@ -50,24 +56,26 @@ private fun HomeScreen(
 @Composable
 private fun GameButton(
     gameType: GameType,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     GameButton(
         text = gameName(gameType),
         containerColor = buttonColor(gameType),
+        onClick = onClick,
         modifier = modifier,
     )
 }
 
 private fun gameName(gameType: GameType) = when (gameType) {
-    GameType.TruthOrDare -> "\uD83D\uDE4A Truth or Dare"
+    GameType.Truth -> "\uD83D\uDE4A Truth"
     GameType.Random -> "\uD83C\uDFB2 Random"
     GameType.Challenge -> "\uD83C\uDFAF Challenge"
 }
 
 @Suppress("MagicNumber")
 private fun buttonColor(gameType: GameType) = when (gameType) {
-    GameType.TruthOrDare -> Color(0xFF6750A4)
+    GameType.Truth -> Color(0xFF6750A4)
     GameType.Random -> Color(0xFF625B71)
     GameType.Challenge -> Color(0xFF7D5260)
 }
@@ -79,11 +87,12 @@ private fun HomeScreenPreview() {
         HomeScreen(
             uiState = HomeUiState(
                 games = listOf(
-                    GameType.TruthOrDare,
-                    GameType.Random,
+                    GameType.Truth,
                     GameType.Challenge,
+                    GameType.Random,
                 ).toImmutableList(),
             ),
+            onGameSelect = {},
         )
     }
 }

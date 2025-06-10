@@ -15,10 +15,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-internal data class HomeUiState(
-    val games: ImmutableList<GameType> = persistentListOf(),
-)
-
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     getGameTypesUseCase: GetGameTypesUseCase,
@@ -38,3 +34,7 @@ private fun homeUiState(
 ): Flow<HomeUiState> = flow {
     emit(HomeUiState(games = useCase().toImmutableList()))
 }
+
+internal data class HomeUiState(
+    val games: ImmutableList<GameType> = persistentListOf(),
+)

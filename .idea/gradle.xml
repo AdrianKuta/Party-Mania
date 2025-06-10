@@ -46,6 +46,7 @@
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui/home" />
             <option value="$PROJECT_DIR$/ui/sharedui" />
+            <option value="$PROJECT_DIR$/ui/truthordare" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -17,10 +17,11 @@ import dev.adriankuta.partymania.core.designsystem.theme.contrastiveTo
 internal fun GameButton(
     text: String,
     containerColor: Color,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Button(
-        onClick = {},
+        onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contrastiveTo(containerColor),
@@ -39,5 +40,9 @@ internal fun GameButton(
 @Preview
 @Composable
 private fun GameButtonPreview() {
-    GameButton(text = "\uD83D\uDE4A Truth", containerColor = Color.Blue)
+    GameButton(
+        text = "\uD83D\uDE4A Truth",
+        containerColor = Color.Blue,
+        onClick = {},
+    )
 }

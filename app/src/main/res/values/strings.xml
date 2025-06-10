@@ -1,12 +1,3 @@
 <resources>
     <string name="app_name" translatable="false">Party Mania</string>
-    <string name="game_type_challange">Challenge</string>
-    <string name="game_type_challange_description">This category involves amusing and active challenges like "Dance the Macarena for 1 minute," "Do 10 squats in 10 seconds," "Hop on one foot around the room for 30 seconds," etc. Players must complete these tasks within a specified time or quantity to earn points.</string>
-    <string name="game_type_improvisation">Improvisation</string>
-    <string name="game_type_improvisation_description">It\'s a game of guessing movies, TV shows, songs or books using pantomime. Players take turns trying to guess what their teammate is depicting. The team with the most correct answers wins.</string>
-    <string name="game_type_riddle">Riddle</string>
-    <string name="game_type_riddle_description">This category comprises various mind-bending puzzles, riddles, and brain teasers. Players must solve them as quickly as possible. If someone struggles with a puzzle, other players can provide hints but at the cost of losing points.</string>
-    <string name="feature_game_questions_game_type_yes_or_no">20 questions</string>
-    <string name="feature_game_questions_game_type_yes_or_no_description">This is a guessing game based on 20 questions. The player takes turns asking questions about the person that others are trying to guess. Questions must be worded so that they can be answered yes or no. The first player to guess the person wins.</string>
-    <string name="start_game">Start Game</string>
 </resources>
