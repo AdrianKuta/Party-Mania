@@ -65,6 +65,8 @@ dependencies {
     implementation(projects.model.data.room)
     implementation(projects.model.data.simple)
 
+    implementation(projects.ui.home)
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)

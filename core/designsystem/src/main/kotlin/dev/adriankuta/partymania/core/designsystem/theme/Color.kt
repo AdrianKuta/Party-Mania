@@ -1,5 +1,15 @@
 package dev.adriankuta.partymania.core.designsystem.theme
+
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
+
+@Composable
+fun contrastiveTo(color: Color): Color = if (color.luminance() < 0.5) {
+    Color.White
+} else {
+    Color.Black
+}
 
 val md_theme_light_primary = Color(0xFF825500)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)

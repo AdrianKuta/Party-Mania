@@ -9,21 +9,23 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.adriankuta.partymania.feature.game.questions.navigation.questionsGameScreen
 import dev.adriankuta.partymania.screens.home.HomeScreen
+import dev.adriankuta.partymania.ui.home.navigation.HomeRoute
+import dev.adriankuta.partymania.ui.home.navigation.homeScreen
 
 @Composable
 fun PartyManiaNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = PartyManiaDestinations.HOME_ROUTE,
     navActions: PartyManiaNavigationActions = remember(navController) {
         PartyManiaNavigationActions(navController)
     },
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = HomeRoute,
         modifier = modifier,
     ) {
+        homeScreen()
         composable(PartyManiaDestinations.HOME_ROUTE) {
             HomeScreen(
                 onStartGame = navActions::navigateToGame,

@@ -30,6 +30,7 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/core/util" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/gametypes" />
             <option value="$PROJECT_DIR$/domain/types" />
             <option value="$PROJECT_DIR$/domain/yesorno" />
             <option value="$PROJECT_DIR$/feature" />
