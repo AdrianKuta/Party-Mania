@@ -26,7 +26,8 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AnimatedCurvedTopBar(
-    content: @Composable BoxScope.() -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable BoxScope.() -> Unit = {},
 ) {
     val isPreview = LocalInspectionMode.current
     var expanded by remember { mutableStateOf(isPreview) }
@@ -47,7 +48,7 @@ fun AnimatedCurvedTopBar(
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(height)
             .clip(CurvedBottomShape())

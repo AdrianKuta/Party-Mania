@@ -30,12 +30,12 @@ private fun TruthOrDareScreen(
     gameUiState: TruthOrDareUiState,
     modifier: Modifier = Modifier,
 ) {
-    Column {
+    Column(modifier = modifier) {
         AnimatedCurvedTopBar {
             Text(
                 text = gameUiState.variant.name,
                 style = MaterialTheme.typography.displaySmall,
-                modifier = modifier.align(Alignment.Center),
+                modifier = Modifier.align(Alignment.Center),
             )
         }
     }

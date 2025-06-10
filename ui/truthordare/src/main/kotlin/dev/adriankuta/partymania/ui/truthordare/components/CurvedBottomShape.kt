@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 
+@Suppress("MagicNumber")
 class CurvedBottomShape : Shape {
     override fun createOutline(
         size: Size,
@@ -17,8 +18,10 @@ class CurvedBottomShape : Shape {
             moveTo(0f, 0f)
             lineTo(0f, size.height - 50)
             quadraticTo(
-                size.width / 2, size.height + 50,  // Control point
-                size.width, size.height - 50,      // End point
+                size.width / 2,
+                size.height + 50, // Control point
+                size.width,
+                size.height - 50, // End point
             )
             lineTo(size.width, 0f)
             close()
