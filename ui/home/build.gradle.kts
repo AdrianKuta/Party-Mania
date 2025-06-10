@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(projects.core.designsystem)
+    implementation(projects.domain.gametypes)
 
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.timber)

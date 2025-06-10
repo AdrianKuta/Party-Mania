@@ -1,4 +1,4 @@
-package dev.adriankuta.partymania.model.repository.di.usecases
+package dev.adriankuta.partymania.model.repository.di.usecases.yesorno
 
 import dagger.Binds
 import dagger.Module

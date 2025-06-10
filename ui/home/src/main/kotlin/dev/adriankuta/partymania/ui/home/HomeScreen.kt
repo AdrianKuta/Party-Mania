@@ -1,55 +1,43 @@
 package dev.adriankuta.partymania.ui.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.core.designsystem.theme.PreviewDevices
+import dev.adriankuta.partymania.domain.gametypes.entities.GameType
 import dev.adriankuta.partymania.ui.home.components.GameButton
-
-internal enum class GameType {
-    TruthOrDare, Random, Challenge
-}
-
-internal data class UiState(
-    val games: List<GameType>,
-)
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 internal fun HomeScreen(
     viewModel: HomeScreenViewModel = hiltViewModel(),
 ) {
-    val uiState = viewModel.uiState
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     HomeScreen(uiState = uiState)
 }
 
 @Composable
 private fun HomeScreen(
-    uiState: UiState,
+    uiState: HomeUiState,
 ) {
-    val colors = listOf(
-        Color(0xFF6750A4),
-        Color(0xFF625B71),
-        Color(0xFF7D5260),
-        Color(0xFF52635F),
-        Color(0xFF7D5260),
-        Color(0xFF52635F),
-    )
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.padding(8.dp),
     ) {
         uiState.games.forEachIndexed { index, type ->
             GameButton(
-                text = type.name,
-                containerColor = colors[index % colors.size],
+                gameType = type,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(2f),
@@ -58,13 +46,43 @@ private fun HomeScreen(
     }
 }
 
+@SuppressLint("ComposableNaming")
+@Composable
+private fun GameButton(
+    gameType: GameType,
+    modifier: Modifier = Modifier,
+) {
+    GameButton(
+        text = gameName(gameType),
+        containerColor = buttonColor(gameType),
+        modifier = modifier,
+    )
+}
+
+private fun gameName(gameType: GameType) = when (gameType) {
+    GameType.TruthOrDare -> "\uD83D\uDE4A Truth or Dare"
+    GameType.Random -> "\uD83C\uDFB2 Random"
+    GameType.Challenge -> "\uD83C\uDFAF Challenge"
+}
+
+@Suppress("MagicNumber")
+private fun buttonColor(gameType: GameType) = when (gameType) {
+    GameType.TruthOrDare -> Color(0xFF6750A4)
+    GameType.Random -> Color(0xFF625B71)
+    GameType.Challenge -> Color(0xFF7D5260)
+}
+
 @PreviewDevices
 @Composable
 private fun HomeScreenPreview() {
     PartyManiaTheme {
         HomeScreen(
-            uiState = UiState(
-                games = GameType.entries,
+            uiState = HomeUiState(
+                games = listOf(
+                    GameType.TruthOrDare,
+                    GameType.Random,
+                    GameType.Challenge,
+                ).toImmutableList(),
             ),
         )
     }

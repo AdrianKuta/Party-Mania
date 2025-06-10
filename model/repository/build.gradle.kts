@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.domain.gametypes)
     implementation(projects.domain.yesorno)
     implementation(projects.model.datasource.characters)
 
