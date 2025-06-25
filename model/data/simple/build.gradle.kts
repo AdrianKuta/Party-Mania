@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.model.datasource.shared)
     implementation(projects.model.datasource.characters)
     implementation(projects.core.util)
     implementation(libs.gson)
