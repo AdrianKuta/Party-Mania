@@ -31,6 +31,7 @@
             <option value="$PROJECT_DIR$/core/util" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/gametypes" />
+            <option value="$PROJECT_DIR$/domain/truthordare" />
             <option value="$PROJECT_DIR$/domain/types" />
             <option value="$PROJECT_DIR$/domain/yesorno" />
             <option value="$PROJECT_DIR$/feature" />
@@ -42,6 +43,7 @@
             <option value="$PROJECT_DIR$/model/data/simple" />
             <option value="$PROJECT_DIR$/model/datasource" />
             <option value="$PROJECT_DIR$/model/datasource/characters" />
+            <option value="$PROJECT_DIR$/model/datasource/questions" />
             <option value="$PROJECT_DIR$/model/repository" />
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui/home" />

@@ -4,5 +4,5 @@ plugins {
 }
 
 android {
-    namespace = "dev.adriankuta.partymania.model.datasource.characters"
+    namespace = "dev.adriankuta.partymania.model.datasource.questions"
 }

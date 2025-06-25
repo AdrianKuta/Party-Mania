@@ -14,6 +14,7 @@ androidxCoreSplashscreen = "1.0.1"
 androidxJunit = "1.2.1"
 androidxLifecycle = "2.9.0"
 androidxNavigation = "2.9.0"
+animation = "1.8.3"
 appUpdateKtx = "2.1.0"
 appcompat = "1.7.0"
 coreTest = "1.6.1" # https://developer.android.com/jetpack/androidx/releases/test
@@ -43,6 +44,7 @@ uiTextGoogleFonts = "1.8.2"
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }

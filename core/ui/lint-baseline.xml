@@ -5,19 +5,18 @@
     <issue id="Aligned16KB"
         message="The native library `arm64-v8a/libmockkjvmtiagent.so` (from `io.mockk:mockk-agent-android:1.14.2`) is not 16 KB aligned">
         <location
-            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/7d651986ce68bf714d1082b3b9727f5f/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
+            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/1c7ff3fa02d114e45d5283b1705a7761/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
     </issue>
 
     <issue id="Aligned16KB"
         message="The native library `arm64-v8a/libmockkjvmtiagent.so` (from `io.mockk:mockk-agent-android:1.14.2`) is not 16 KB aligned">
         <location
-            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/7d651986ce68bf714d1082b3b9727f5f/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
+            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/1c7ff3fa02d114e45d5283b1705a7761/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
     </issue>
 
-    <issue
-        errorLine1="    &lt;string name=&quot;core_ui_scored_points&quot;>You scored %d points.&lt;/string>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    <issue errorLine1="    &lt;string name=&quot;core_ui_scored_points&quot;>You scored %d points.&lt;/string>"
         id="PluralsCandidate"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         message="Formatting %d followed by words (&quot;points&quot;): This should probably be a plural rather than a string">
         <location column="5" file="src/main/res/values/strings.xml" line="8" />
     </issue>

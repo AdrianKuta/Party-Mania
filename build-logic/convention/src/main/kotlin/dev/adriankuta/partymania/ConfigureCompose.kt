@@ -39,6 +39,7 @@ internal fun Project.configureCompose(
         //"debugImplementation"(libs.findLibrary("androidx.compose.ui.testManifest").get())
 
         "implementation"(platform(bom))
+        "implementation"(libs.findLibrary("androidx.compose.animation").get())
         "implementation"(libs.findLibrary("androidx.compose.material3").get())
         "implementation"(libs.findLibrary("androidx.compose.ui").get())
         "implementation"(libs.findLibrary("androidx.compose.ui.graphics").get())

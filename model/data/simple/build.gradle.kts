@@ -10,7 +10,5 @@ android {
 dependencies {
     implementation(projects.model.datasource.characters)
     implementation(projects.core.util)
-
-    implementation(libs.timber)
     implementation(libs.gson)
 }

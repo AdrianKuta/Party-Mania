@@ -1,5 +1,6 @@
 package dev.adriankuta.partymania.ui.truthordare.navigation
 
+import androidx.annotation.Keep
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -10,6 +11,7 @@ import dev.adriankuta.partymania.ui.truthordare.TruthOrDareScreen
 import dev.adriankuta.partymania.ui.truthordare.TruthOrDareViewModel
 import kotlinx.serialization.Serializable
 
+@Keep
 enum class GameVariant {
     Truth, Challenge, Random
 }

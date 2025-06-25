@@ -8,6 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(projects.domain.yesorno)
-    implementation(libs.timber)
+    implementation(projects.model.datasource.questions)
 }
