@@ -10,6 +10,9 @@ android {
 
 dependencies {
     implementation(projects.core.designsystem)
+    implementation(projects.core.util)
+    implementation(projects.domain.truthordare)
+    implementation(projects.ui.sharedui)
 
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.timber)

@@ -61,6 +61,7 @@ internal fun Project.configureKotlinAndroid(
     dependencies {
         "implementation"(libs.findLibrary("androidx.core.ktx").get())
         "implementation"(libs.findLibrary("kotlinx.coroutines.android").get())
+        "implementation"(libs.findLibrary("kotlinx.datetime").get())
         "implementation"(libs.findLibrary("timber").get())
 
         "coreLibraryDesugaring"(libs.findLibrary("android.desugarJdkLibs").get())

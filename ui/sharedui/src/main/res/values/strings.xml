@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="next">Next</string>
+    <string name="game_finished">Game Finished</string>
+    <string name="game_finished_message">You\'ve finished the game!</string>
+</resources>

@@ -33,7 +33,9 @@ fun PartyManiaNavGraph(
             },
         )
 
-        truthOrDareScreen()
+        truthOrDareScreen(
+            onFinish = { navController.navigateUp() },
+        )
         questionsGameScreen { navController.navigateUp() }
     }
 }
