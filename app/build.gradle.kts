@@ -37,7 +37,7 @@ android {
         }
         release {
             signingConfig = signingConfigs.getByName("release")
-            isDebuggable = true
+            isDebuggable = false
             isMinifyEnabled = false
             isShrinkResources = false
             proguardFiles(

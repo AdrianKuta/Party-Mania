@@ -15,9 +15,9 @@ class GetRandomTruthQuestionsUseCaseImplTest {
     fun `invoke returns mapped questions from datasource`() = runTest {
         // Given
         val testQuestions = listOf(
-            QuestionModel(id = 1, values = mapOf("en" to "Question 1"), wasSeen = false),
-            QuestionModel(id = 2, values = mapOf("en" to "Question 2"), wasSeen = false),
-            QuestionModel(id = 3, values = mapOf("en" to "Question 3"), wasSeen = false),
+            QuestionModel(id = 1, text = "Question 1", wasSeen = false),
+            QuestionModel(id = 2, text = "Question 2", wasSeen = false),
+            QuestionModel(id = 3, text = "Question 3", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomQuestions(3) } returns testQuestions
@@ -40,8 +40,8 @@ class GetRandomTruthQuestionsUseCaseImplTest {
     fun `invoke with count less than available returns subset of questions`() = runTest {
         // Given
         val testQuestions = listOf(
-            QuestionModel(id = 1, values = mapOf("en" to "Question 1"), wasSeen = false),
-            QuestionModel(id = 2, values = mapOf("en" to "Question 2"), wasSeen = false),
+            QuestionModel(id = 1, text = "Question 1", wasSeen = false),
+            QuestionModel(id = 2, text = "Question 2", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomQuestions(2) } returns testQuestions
@@ -63,8 +63,8 @@ class GetRandomTruthQuestionsUseCaseImplTest {
     fun `invoke with count greater than available returns all questions`() = runTest {
         // Given
         val testQuestions = listOf(
-            QuestionModel(id = 1, values = mapOf("en" to "Question 1"), wasSeen = false),
-            QuestionModel(id = 2, values = mapOf("en" to "Question 2"), wasSeen = false),
+            QuestionModel(id = 1, text = "Question 1", wasSeen = false),
+            QuestionModel(id = 2, text = "Question 2", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomQuestions(5) } returns testQuestions
@@ -103,7 +103,7 @@ class GetRandomTruthQuestionsUseCaseImplTest {
     fun `invoke with non-English question maps correctly using fallback`() = runTest {
         // Given
         val testQuestions = listOf(
-            QuestionModel(id = 1, values = mapOf("fr" to "Question en français"), wasSeen = false),
+            QuestionModel(id = 1, text = "Question en français", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomQuestions(1) } returns testQuestions
@@ -124,7 +124,7 @@ class GetRandomTruthQuestionsUseCaseImplTest {
     fun `invoke with empty values map returns empty string`() = runTest {
         // Given
         val testQuestions = listOf(
-            QuestionModel(id = 1, values = emptyMap(), wasSeen = false),
+            QuestionModel(id = 1, text = "", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomQuestions(1) } returns testQuestions

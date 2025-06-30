@@ -5,6 +5,6 @@ import dev.adriankuta.partymania.model.datasource.questions.entities.ChallengeMo
 
 internal fun ChallengeModel.toDomain(): Challenge {
     return Challenge(
-        value = value,
+        value = text,
     )
 }
