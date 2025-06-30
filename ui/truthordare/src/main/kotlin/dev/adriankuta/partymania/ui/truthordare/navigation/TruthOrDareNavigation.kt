@@ -28,10 +28,13 @@ fun NavController.navigateToTruthOrDare(
     }
 }
 
-fun NavGraphBuilder.truthOrDareScreen() {
+fun NavGraphBuilder.truthOrDareScreen(
+    onFinish: () -> Unit,
+) {
     composable<TruthOrDareRoute> { entry ->
         val variant = entry.toRoute<TruthOrDareRoute>().variant
         TruthOrDareScreen(
+            onFinish = onFinish,
             viewModel = hiltViewModel<TruthOrDareViewModel, TruthOrDareViewModel.Factory>(
                 key = variant.name,
             ) { factory ->
