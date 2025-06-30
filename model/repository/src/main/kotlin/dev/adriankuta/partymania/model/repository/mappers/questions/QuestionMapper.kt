@@ -5,6 +5,6 @@ import dev.adriankuta.partymania.model.datasource.questions.entities.QuestionMod
 
 internal fun QuestionModel.toDomain(): TruthQuestion {
     return TruthQuestion(
-        value = value,
+        value = text,
     )
 }

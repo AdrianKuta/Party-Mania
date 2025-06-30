@@ -24,17 +24,17 @@ internal object JsonUtils {
     inline fun <reified T, R> parseJsonFromAssets(
         context: Context,
         fileName: String,
-        typeToken: TypeToken<List<T>>,
+        typeToken: TypeToken<T>,
         crossinline mapper: (T) -> R,
-    ): List<R> {
+    ): R? {
         return try {
             val inputStream = context.assets.open(fileName)
             val jsonReader = JsonReader(InputStreamReader(inputStream))
-            val items = Gson().fromJson<List<T>>(jsonReader, typeToken.type)
-            items.map { mapper(it) }
+            val content = Gson().fromJson<T>(jsonReader, typeToken.type)
+            mapper(content)
         } catch (e: Exception) {
             Timber.e(e)
-            emptyList()
+            null
         }
     }
 }

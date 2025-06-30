@@ -3,6 +3,7 @@ package dev.adriankuta.partymania.model.data.room
 import android.content.Context
 import dev.adriankuta.partymania.model.data.room.dao.ChallengesDao
 import dev.adriankuta.partymania.model.data.room.dao.QuestionsDao
+import dev.adriankuta.partymania.model.data.room.dto.ContentDto
 import dev.adriankuta.partymania.model.data.room.entities.ChallengeEntity
 import dev.adriankuta.partymania.model.data.room.entities.QuestionEntity
 import io.mockk.coEvery
@@ -16,6 +17,7 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import java.util.Locale
 
 internal class QuestionsDatasourceImplTest {
 
@@ -46,9 +48,24 @@ internal class QuestionsDatasourceImplTest {
     fun `getRandomQuestions returns unseen questions when enough are available`() = runTest {
         // Given
         val unseenQuestions = listOf(
-            QuestionEntity(id = 1, values = mapOf("en" to "Question 1"), wasSeen = false),
-            QuestionEntity(id = 2, values = mapOf("en" to "Question 2"), wasSeen = false),
-            QuestionEntity(id = 3, values = mapOf("en" to "Question 3"), wasSeen = false),
+            QuestionEntity(
+                id = 1,
+                locale = Locale.getDefault(),
+                text = "Question 1",
+                wasSeen = false,
+            ),
+            QuestionEntity(
+                id = 2,
+                locale = Locale.getDefault(),
+                text = "Question 2",
+                wasSeen = false,
+            ),
+            QuestionEntity(
+                id = 3,
+                locale = Locale.getDefault(),
+                text = "Question 3",
+                wasSeen = false,
+            ),
         )
 
         coEvery { questionsDao.getRandomUnseenQuestions(3) } returns unseenQuestions
@@ -71,12 +88,27 @@ internal class QuestionsDatasourceImplTest {
         runTest {
             // Given
             val unseenQuestions = listOf(
-                QuestionEntity(id = 1, values = mapOf("en" to "Question 1"), wasSeen = false),
+                QuestionEntity(
+                    id = 1,
+                    locale = Locale.getDefault(),
+                    text = "Question 1",
+                    wasSeen = false,
+                ),
             )
 
             val seenQuestions = listOf(
-                QuestionEntity(id = 2, values = mapOf("en" to "Question 2"), wasSeen = true),
-                QuestionEntity(id = 3, values = mapOf("en" to "Question 3"), wasSeen = true),
+                QuestionEntity(
+                    id = 2,
+                    locale = Locale.getDefault(),
+                    text = "Question 2",
+                    wasSeen = true,
+                ),
+                QuestionEntity(
+                    id = 3,
+                    locale = Locale.getDefault(),
+                    text = "Question 3",
+                    wasSeen = true,
+                ),
             )
 
             coEvery { questionsDao.getRandomUnseenQuestions(3) } returns unseenQuestions
@@ -98,9 +130,24 @@ internal class QuestionsDatasourceImplTest {
     fun `getRandomChallenges returns unseen challenges when enough are available`() = runTest {
         // Given
         val unseenChallenges = listOf(
-            ChallengeEntity(id = 1, values = mapOf("en" to "Challenge 1"), wasSeen = false),
-            ChallengeEntity(id = 2, values = mapOf("en" to "Challenge 2"), wasSeen = false),
-            ChallengeEntity(id = 3, values = mapOf("en" to "Challenge 3"), wasSeen = false),
+            ChallengeEntity(
+                id = 1,
+                locale = Locale.getDefault(),
+                text = "Challenge 1",
+                wasSeen = false,
+            ),
+            ChallengeEntity(
+                id = 2,
+                locale = Locale.getDefault(),
+                text = "Challenge 2",
+                wasSeen = false,
+            ),
+            ChallengeEntity(
+                id = 3,
+                locale = Locale.getDefault(),
+                text = "Challenge 3",
+                wasSeen = false,
+            ),
         )
 
         coEvery { challengesDao.getRandomUnseenChallenges(3) } returns unseenChallenges
@@ -123,12 +170,27 @@ internal class QuestionsDatasourceImplTest {
         runTest {
             // Given
             val unseenChallenges = listOf(
-                ChallengeEntity(id = 1, values = mapOf("en" to "Challenge 1"), wasSeen = false),
+                ChallengeEntity(
+                    id = 1,
+                    locale = Locale.getDefault(),
+                    text = "Challenge 1",
+                    wasSeen = false,
+                ),
             )
 
             val seenChallenges = listOf(
-                ChallengeEntity(id = 2, values = mapOf("en" to "Challenge 2"), wasSeen = true),
-                ChallengeEntity(id = 3, values = mapOf("en" to "Challenge 3"), wasSeen = true),
+                ChallengeEntity(
+                    id = 2,
+                    locale = Locale.getDefault(),
+                    text = "Challenge 2",
+                    wasSeen = true,
+                ),
+                ChallengeEntity(
+                    id = 3,
+                    locale = Locale.getDefault(),
+                    text = "Challenge 3",
+                    wasSeen = true,
+                ),
             )
 
             coEvery { challengesDao.getRandomUnseenChallenges(3) } returns unseenChallenges
@@ -149,32 +211,24 @@ internal class QuestionsDatasourceImplTest {
     @Test
     fun `populateInitialData populates database when empty`() = runTest {
         // Given
-        val questionEntities = listOf(
-            QuestionEntity(id = 1, values = mapOf("en" to "Question 1"), wasSeen = false),
-            QuestionEntity(id = 2, values = mapOf("en" to "Question 2"), wasSeen = false),
-        )
-
-        val challengeEntities = listOf(
-            ChallengeEntity(id = 1, values = mapOf("en" to "Challenge 1"), wasSeen = false),
-            ChallengeEntity(id = 2, values = mapOf("en" to "Challenge 2"), wasSeen = false),
-        )
-
         coEvery { questionsDao.getCount() } returns 0
         coEvery { challengesDao.getCount() } returns 0
 
         // Create a spy on the datasource to mock the private methods
         val spyDatasource = spyk(questionsDatasource)
 
-        // Mock the private methods
-        every { spyDatasource["getInitialQuestions"]() } returns questionEntities
-        every { spyDatasource["getInitialChallenges"]() } returns challengeEntities
+        // Mock the private method
+        every { spyDatasource["getInitialContent"]() } returns ContentDto(
+            truth = listOf("Question 1", "Question 2"),
+            dare = listOf("Challenge 1", "Challenge 2"),
+        )
 
         // When
         spyDatasource.populateInitialData()
 
         // Then
-        coVerify { questionsDao.insertAll(questionEntities) }
-        coVerify { challengesDao.insertAll(challengeEntities) }
+        coVerify { questionsDao.insertAll(any()) }
+        coVerify { challengesDao.insertAll(any()) }
     }
 
     @Test

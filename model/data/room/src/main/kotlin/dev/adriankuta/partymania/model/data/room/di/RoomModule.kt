@@ -22,6 +22,7 @@ internal object RoomModule {
             PartyManiaDatabase::class.java,
             "partymania-database",
         )
+            .fallbackToDestructiveMigration(true)
             .build()
     }
 }

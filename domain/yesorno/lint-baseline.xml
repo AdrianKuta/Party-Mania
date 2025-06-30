@@ -5,7 +5,7 @@
     <issue id="Aligned16KB"
         message="The native library `arm64-v8a/libmockkjvmtiagent.so` (from `io.mockk:mockk-agent-android:1.14.2`) is not 16 KB aligned">
         <location
-            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/84f8077d1161833e7bbbd5d852c2096b/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
+            file="$GRADLE_USER_HOME/caches/8.14.1/transforms/cc7c523f8d89bda7b4c5cf9d677faa63/transformed/mockk-agent-android-1.14.2/jni/arm64-v8a/libmockkjvmtiagent.so" />
     </issue>
 
 </issues>

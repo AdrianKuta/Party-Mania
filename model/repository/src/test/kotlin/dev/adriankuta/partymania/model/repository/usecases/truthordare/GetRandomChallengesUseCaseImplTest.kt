@@ -15,9 +15,9 @@ class GetRandomChallengesUseCaseImplTest {
     fun `invoke returns mapped challenges from datasource`() = runTest {
         // Given
         val testChallenges = listOf(
-            ChallengeModel(id = 1, values = mapOf("en" to "Challenge 1"), wasSeen = false),
-            ChallengeModel(id = 2, values = mapOf("en" to "Challenge 2"), wasSeen = false),
-            ChallengeModel(id = 3, values = mapOf("en" to "Challenge 3"), wasSeen = false),
+            ChallengeModel(id = 1, text = "Challenge 1", wasSeen = false),
+            ChallengeModel(id = 2, text = "Challenge 2", wasSeen = false),
+            ChallengeModel(id = 3, text = "Challenge 3", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomChallenges(3) } returns testChallenges
@@ -40,8 +40,8 @@ class GetRandomChallengesUseCaseImplTest {
     fun `invoke with count less than available returns subset of challenges`() = runTest {
         // Given
         val testChallenges = listOf(
-            ChallengeModel(id = 1, values = mapOf("en" to "Challenge 1"), wasSeen = false),
-            ChallengeModel(id = 2, values = mapOf("en" to "Challenge 2"), wasSeen = false),
+            ChallengeModel(id = 1, text = "Challenge 1", wasSeen = false),
+            ChallengeModel(id = 2, text = "Challenge 2", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomChallenges(2) } returns testChallenges
@@ -63,8 +63,8 @@ class GetRandomChallengesUseCaseImplTest {
     fun `invoke with count greater than available returns all challenges`() = runTest {
         // Given
         val testChallenges = listOf(
-            ChallengeModel(id = 1, values = mapOf("en" to "Challenge 1"), wasSeen = false),
-            ChallengeModel(id = 2, values = mapOf("en" to "Challenge 2"), wasSeen = false),
+            ChallengeModel(id = 1, text = "Challenge 1", wasSeen = false),
+            ChallengeModel(id = 2, text = "Challenge 2", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomChallenges(5) } returns testChallenges
@@ -105,7 +105,7 @@ class GetRandomChallengesUseCaseImplTest {
         val testChallenges = listOf(
             ChallengeModel(
                 id = 1,
-                values = mapOf("fr" to "Challenge en français"),
+                text = "Challenge en français",
                 wasSeen = false,
             ),
         )
@@ -128,7 +128,7 @@ class GetRandomChallengesUseCaseImplTest {
     fun `invoke with empty values map returns empty string`() = runTest {
         // Given
         val testChallenges = listOf(
-            ChallengeModel(id = 1, values = emptyMap(), wasSeen = false),
+            ChallengeModel(id = 1, text = "", wasSeen = false),
         )
         val mockDatasource = mockk<QuestionsDatasource>()
         coEvery { mockDatasource.getRandomChallenges(1) } returns testChallenges
