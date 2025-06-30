@@ -30,7 +30,7 @@ class TruthOrDareViewModel @AssistedInject constructor(
 
     private val currentQuestionIndex = MutableStateFlow(0)
 
-    val variant = gameUiState(
+    val uiState = gameUiState(
         variant = gameVariant,
         getRandomQuestions = getRandomTruthQuestionsUseCase,
         getRandomChallenges = getRandomChallengesUseCase,

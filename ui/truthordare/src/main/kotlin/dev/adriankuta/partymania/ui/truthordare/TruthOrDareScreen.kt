@@ -37,7 +37,7 @@ fun TruthOrDareScreen(
     modifier: Modifier = Modifier,
     viewModel: TruthOrDareViewModel = hiltViewModel(),
 ) {
-    val gameUiState by viewModel.variant.collectAsStateWithLifecycle()
+    val gameUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     if (gameUiState.isGameFinished) {
         AlertDialog(

@@ -39,6 +39,7 @@ testRules = "1.6.1" # https://developer.android.com/jetpack/androidx/releases/te
 testRunner = "1.6.2" # https://developer.android.com/jetpack/androidx/releases/test
 timber = "5.0.1"
 truth = "1.4.4"
+turbine = "1.2.1"
 uiAutomator = "2.3.0"
 uiTextGoogleFonts = "1.8.2"
 
@@ -93,6 +94,7 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }

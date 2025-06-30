@@ -13,6 +13,6 @@ internal fun Project.configureInstrumentation() {
         "androidTestImplementation"(libs.findLibrary("mockk.android").get())
         "androidTestImplementation"(libs.findLibrary("androidx.test.rules").get())
         "androidTestImplementation"(libs.findLibrary("androidx.test.uiautomator").get())
-        //"androidTestImplementation"(libs.findLibrary("turbine").get())
+        "androidTestImplementation"(libs.findLibrary("turbine").get())
     }
 }

@@ -13,6 +13,6 @@ internal fun Project.configureUnitTests() {
         "testImplementation"(libs.findLibrary("kotlinx.coroutines.test").get())
         "testImplementation"(libs.findLibrary("truth").get())
         "testImplementation"(libs.findLibrary("mockk.android").get())
-        //"testImplementation"(libs.findLibrary("turbine").get())
+        "testImplementation"(libs.findLibrary("turbine").get())
     }
 }
