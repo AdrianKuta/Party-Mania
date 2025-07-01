@@ -50,19 +50,19 @@ internal class QuestionsDatasourceImplTest {
         val unseenQuestions = listOf(
             QuestionEntity(
                 id = 1,
-                locale = Locale.getDefault(),
+                locale = Locale.ENGLISH,
                 text = "Question 1",
                 wasSeen = false,
             ),
             QuestionEntity(
                 id = 2,
-                locale = Locale.getDefault(),
+                locale = Locale.ENGLISH,
                 text = "Question 2",
                 wasSeen = false,
             ),
             QuestionEntity(
                 id = 3,
-                locale = Locale.getDefault(),
+                locale = Locale.ENGLISH,
                 text = "Question 3",
                 wasSeen = false,
             ),
@@ -90,7 +90,7 @@ internal class QuestionsDatasourceImplTest {
             val unseenQuestions = listOf(
                 QuestionEntity(
                     id = 1,
-                    locale = Locale.getDefault(),
+                    locale = Locale.ENGLISH,
                     text = "Question 1",
                     wasSeen = false,
                 ),
@@ -99,13 +99,13 @@ internal class QuestionsDatasourceImplTest {
             val seenQuestions = listOf(
                 QuestionEntity(
                     id = 2,
-                    locale = Locale.getDefault(),
+                    locale = Locale.ENGLISH,
                     text = "Question 2",
                     wasSeen = true,
                 ),
                 QuestionEntity(
                     id = 3,
-                    locale = Locale.getDefault(),
+                    locale = Locale.ENGLISH,
                     text = "Question 3",
                     wasSeen = true,
                 ),
@@ -132,19 +132,19 @@ internal class QuestionsDatasourceImplTest {
         val unseenChallenges = listOf(
             ChallengeEntity(
                 id = 1,
-                locale = Locale.getDefault(),
+                locale = Locale.ENGLISH,
                 text = "Challenge 1",
                 wasSeen = false,
             ),
             ChallengeEntity(
                 id = 2,
-                locale = Locale.getDefault(),
+                locale = Locale.ENGLISH,
                 text = "Challenge 2",
                 wasSeen = false,
             ),
             ChallengeEntity(
                 id = 3,
-                locale = Locale.getDefault(),
+                locale = Locale.ENGLISH,
                 text = "Challenge 3",
                 wasSeen = false,
             ),
@@ -172,7 +172,7 @@ internal class QuestionsDatasourceImplTest {
             val unseenChallenges = listOf(
                 ChallengeEntity(
                     id = 1,
-                    locale = Locale.getDefault(),
+                    locale = Locale.ENGLISH,
                     text = "Challenge 1",
                     wasSeen = false,
                 ),
@@ -181,13 +181,13 @@ internal class QuestionsDatasourceImplTest {
             val seenChallenges = listOf(
                 ChallengeEntity(
                     id = 2,
-                    locale = Locale.getDefault(),
+                    locale = Locale.ENGLISH,
                     text = "Challenge 2",
                     wasSeen = true,
                 ),
                 ChallengeEntity(
                     id = 3,
-                    locale = Locale.getDefault(),
+                    locale = Locale.ENGLISH,
                     text = "Challenge 3",
                     wasSeen = true,
                 ),
@@ -219,6 +219,7 @@ internal class QuestionsDatasourceImplTest {
 
         // Mock the private method
         every { spyDatasource["getInitialContent"]() } returns ContentDto(
+            languageTag = "en",
             truth = listOf("Question 1", "Question 2"),
             dare = listOf("Challenge 1", "Challenge 2"),
         )

@@ -9,10 +9,10 @@ import dev.adriankuta.partymania.model.data.room.entities.ChallengeEntity
 import dev.adriankuta.partymania.model.data.room.entities.QuestionEntity
 import dev.adriankuta.partymania.model.data.room.mappers.toModel
 import dev.adriankuta.partymania.model.data.room.utils.JsonUtils
-import dev.adriankuta.partymania.model.data.room.utils.PartyManiaLocale
 import dev.adriankuta.partymania.model.datasource.questions.QuestionsDatasource
 import dev.adriankuta.partymania.model.datasource.questions.entities.ChallengeModel
 import dev.adriankuta.partymania.model.datasource.questions.entities.QuestionModel
+import java.util.Locale
 import javax.inject.Inject
 
 internal class QuestionsDatasourceImpl @Inject constructor(
@@ -20,15 +20,22 @@ internal class QuestionsDatasourceImpl @Inject constructor(
     private val challengesDao: ChallengesDao,
     private val context: Context,
 ) : QuestionsDatasource {
+    private val languageTag = context.resources.getString(R.string.content_language_tag)
+    private val locale =
+        if (languageTag.isEmpty()) {
+            Locale.ENGLISH
+        } else {
+            Locale.forLanguageTag(languageTag)
+        }
 
     override suspend fun getRandomQuestions(count: Int): List<QuestionModel> {
         // Try to get unseen questions first
-        var questions = questionsDao.getRandomUnseenQuestions(count)
+        var questions = questionsDao.getRandomUnseenQuestions(count, locale)
 
         // If we don't have enough unseen questions, get random ones
         if (questions.size < count) {
             val remainingCount = count - questions.size
-            questions = questions + questionsDao.getRandomQuestions(remainingCount)
+            questions = questions + questionsDao.getRandomQuestions(remainingCount, locale)
         }
 
         // Mark the questions as seen
@@ -42,12 +49,12 @@ internal class QuestionsDatasourceImpl @Inject constructor(
 
     override suspend fun getRandomChallenges(count: Int): List<ChallengeModel> {
         // Try to get unseen challenges first
-        var challenges = challengesDao.getRandomUnseenChallenges(count)
+        var challenges = challengesDao.getRandomUnseenChallenges(count, locale)
 
         // If we don't have enough unseen challenges, get random ones
         if (challenges.size < count) {
             val remainingCount = count - challenges.size
-            challenges = challenges + challengesDao.getRandomChallenges(remainingCount)
+            challenges = challenges + challengesDao.getRandomChallenges(remainingCount, locale)
         }
 
         // Mark the challenges as seen
@@ -62,12 +69,11 @@ internal class QuestionsDatasourceImpl @Inject constructor(
     suspend fun populateInitialData() {
         // Only populate if the database is empty
         val content = getInitialContent() ?: return
-        val language = PartyManiaLocale.getDefaultAndSupported()
 
-        if (questionsDao.getCount() < content.truth.size) {
+        if (questionsDao.getCount(locale) < content.truth.size) {
             val initialQuestions = content.truth.map {
                 QuestionEntity(
-                    locale = language,
+                    locale = locale,
                     text = it,
                     wasSeen = false,
                 )
@@ -75,10 +81,10 @@ internal class QuestionsDatasourceImpl @Inject constructor(
             questionsDao.insertAll(initialQuestions)
         }
 
-        if (challengesDao.getCount() < content.dare.size) {
+        if (challengesDao.getCount(locale) < content.dare.size) {
             val initialChallenges = content.dare.map {
                 ChallengeEntity(
-                    locale = language,
+                    locale = locale,
                     text = it,
                     wasSeen = false,
                 )
@@ -88,11 +94,11 @@ internal class QuestionsDatasourceImpl @Inject constructor(
     }
 
     private fun getInitialContent(): ContentDto? {
-        val locale = PartyManiaLocale.getDefaultAndSupported()
+        val contentFileName = context.resources.getString(R.string.content_file_name)
 
         return JsonUtils.parseJsonFromAssets(
             context = context,
-            fileName = "${locale.language}.json",
+            fileName = contentFileName,
             typeToken = object : TypeToken<ContentDto>() {},
             mapper = { it },
         )

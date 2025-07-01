@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import dev.adriankuta.partymania.model.data.room.entities.ChallengeEntity
-import dev.adriankuta.partymania.model.data.room.utils.PartyManiaLocale
 import java.util.Locale
 
 @Dao
@@ -14,13 +13,13 @@ internal interface ChallengesDao {
     @Query("SELECT * FROM challenges WHERE locale = :locale ORDER BY RANDOM() LIMIT :count")
     suspend fun getRandomChallenges(
         count: Int,
-        locale: Locale = PartyManiaLocale.getDefaultAndSupported(),
+        locale: Locale = Locale.ENGLISH,
     ): List<ChallengeEntity>
 
     @Query("SELECT * FROM challenges WHERE wasSeen = 0 AND locale = :locale ORDER BY RANDOM() LIMIT :count")
     suspend fun getRandomUnseenChallenges(
         count: Int,
-        locale: Locale = PartyManiaLocale.getDefaultAndSupported(),
+        locale: Locale = Locale.ENGLISH,
     ): List<ChallengeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -33,5 +32,5 @@ internal interface ChallengesDao {
     suspend fun markAsSeen(ids: List<Int>)
 
     @Query("SELECT COUNT(*) FROM challenges WHERE locale = :locale")
-    suspend fun getCount(locale: Locale = PartyManiaLocale.getDefaultAndSupported()): Int
+    suspend fun getCount(locale: Locale = Locale.ENGLISH): Int
 }
