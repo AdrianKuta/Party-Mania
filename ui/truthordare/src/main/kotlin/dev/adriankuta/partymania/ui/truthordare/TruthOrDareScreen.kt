@@ -19,6 +19,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -103,6 +105,7 @@ private fun GameContent(
     modifier: Modifier = Modifier,
 ) {
     val currentQuestion = gameUiState.questions.getOrNull(gameUiState.currentQuestionIndex)
+    val haptic = LocalHapticFeedback.current
 
     Column(
         modifier = modifier
@@ -132,7 +135,10 @@ private fun GameContent(
 
         // Next button with enhanced styling
         Button(
-            onClick = onNextClick,
+            onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.VirtualKey)
+                onNextClick()
+            },
             modifier = Modifier
                 .fillMaxWidth(0.7f),
             shape = MaterialTheme.shapes.medium,
