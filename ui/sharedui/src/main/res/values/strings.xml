@@ -3,4 +3,7 @@
     <string name="next">Next</string>
     <string name="game_finished">Game Finished</string>
     <string name="game_finished_message">You\'ve finished the game!</string>
+    <string name="game_type_truth">🙊 Truth</string>
+    <string name="game_type_random">🎲 Random</string>
+    <string name="game_type_challenge">🎯 Challenge</string>
 </resources>

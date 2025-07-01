@@ -1,5 +1,6 @@
 package dev.adriankuta.partymania.ui.truthordare
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -89,13 +90,20 @@ private fun TruthOrDareScreen(
 
         AnimatedCurvedTopBar {
             Text(
-                text = gameUiState.variant.name,
+                text = stringResource(gameNameRes(gameUiState.variant)),
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier.align(Alignment.Center),
                 color = MaterialTheme.colorScheme.onPrimary,
             )
         }
     }
+}
+
+@StringRes
+private fun gameNameRes(gameType: GameVariant): Int = when (gameType) {
+    GameVariant.Truth -> R.string.game_type_truth
+    GameVariant.Random -> R.string.game_type_random
+    GameVariant.Challenge -> R.string.game_type_challenge
 }
 
 @Composable
