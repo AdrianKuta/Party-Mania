@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="next">Dalej</string>
+    <string name="game_finished">Gra zakończona</string>
+    <string name="game_finished_message">Ukończyłeś grę!</string>
+    <string name="game_type_truth">🙊 Prawda</string>
+    <string name="game_type_random">🎲 Losowo</string>
+    <string name="game_type_challenge">🎯 Wyzwanie</string>
+</resources>

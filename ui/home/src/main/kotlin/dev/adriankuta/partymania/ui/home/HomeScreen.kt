@@ -1,6 +1,7 @@
 package dev.adriankuta.partymania.ui.home
 
 import android.annotation.SuppressLint
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -17,6 +19,7 @@ import dev.adriankuta.partymania.core.designsystem.theme.PartyManiaTheme
 import dev.adriankuta.partymania.core.designsystem.theme.PreviewDevices
 import dev.adriankuta.partymania.domain.gametypes.entities.GameType
 import dev.adriankuta.partymania.ui.home.components.GameButton
+import dev.adriankuta.partymania.ui.sharedui.R
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
@@ -60,17 +63,18 @@ private fun GameButton(
     modifier: Modifier = Modifier,
 ) {
     GameButton(
-        text = gameName(gameType),
+        text = stringResource(gameNameRes(gameType)),
         containerColor = buttonColor(gameType),
         onClick = onClick,
         modifier = modifier,
     )
 }
 
-private fun gameName(gameType: GameType) = when (gameType) {
-    GameType.Truth -> "\uD83D\uDE4A Truth"
-    GameType.Random -> "\uD83C\uDFB2 Random"
-    GameType.Challenge -> "\uD83C\uDFAF Challenge"
+@StringRes
+private fun gameNameRes(gameType: GameType): Int = when (gameType) {
+    GameType.Truth -> R.string.game_type_truth
+    GameType.Random -> R.string.game_type_random
+    GameType.Challenge -> R.string.game_type_challenge
 }
 
 @Suppress("MagicNumber")
