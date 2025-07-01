@@ -12,8 +12,8 @@ android {
 
     defaultConfig {
         applicationId = "dev.adriankuta.partymania"
-        versionCode = 12
-        versionName = "0.0.2-${versionCode}"
+        versionCode = 13
+        versionName = "0.0.3-${versionCode}"
         //signingConfig = signingConfigs.getByName("debug")
     }
 
@@ -38,7 +38,7 @@ android {
         release {
             signingConfig = signingConfigs.getByName("release")
             isDebuggable = false
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

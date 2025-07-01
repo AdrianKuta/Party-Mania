@@ -1,5 +1,8 @@
 package dev.adriankuta.partymania.model.data.room.dto
 
+import androidx.annotation.Keep
+
+@Keep
 internal data class ContentDto(
     /**
      * An IETF BCP 47 language tag
