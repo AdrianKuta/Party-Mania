@@ -35,8 +35,8 @@ jobs:
           echo "storePassword=$STORE_PASSWORD" >> keystore.properties
           echo $KEYSTORE_BASE64 | base64 -d > app/upload-keystore.jks
 
-      - name: Build release APK
-        run: ./gradlew assembleRelease
+      - name: Build release APK and Bundle
+        run: ./gradlew assembleFreeRelease bundleFreeRelease
 
       - name: Get version name from release
         id: get_version
@@ -50,6 +50,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: app/build/outputs/apk/release/app-release.apk
+          asset_path: app/build/outputs/apk/free/release/app-free-release.apk
           asset_name: app-release.apk
           asset_content_type: application/vnd.android.package-archive
+
+      - name: Upload AAB Bundle to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: app/build/outputs/bundle/freeRelease/app-free-release.aab
+          asset_name: app-release.aab
+          asset_content_type: application/octet-stream
