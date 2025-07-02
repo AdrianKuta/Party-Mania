@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PartyMania"
         tools:targetApi="33">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3805287728591173~8162403309" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

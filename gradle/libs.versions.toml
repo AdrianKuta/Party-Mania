@@ -1,7 +1,7 @@
 [versions]
 targetSdk = "36"
-compileSdk = "36" # Has to be 34 for Weavr
-minSdk = "21"
+compileSdk = "36"
+minSdk = "23"
 
 activityKtx = "1.10.1"
 androidDesugarJdkLibs = "2.1.5"
@@ -33,6 +33,7 @@ kotlinxSerializationJson = "1.8.1"
 ksp = "2.1.21-2.0.1" # https://github.com/google/ksp/releases
 material = "1.12.0"
 mockk = "1.14.2" # https://github.com/mockk/mockk/releases
+playServicesAds = "24.4.0"
 room = "2.7.2"
 secrets = "2.0.1"
 testRules = "1.6.1" # https://developer.android.com/jetpack/androidx/releases/test
@@ -89,6 +90,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
