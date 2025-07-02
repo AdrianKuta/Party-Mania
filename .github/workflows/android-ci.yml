@@ -46,6 +46,16 @@ jobs:
         with:
           name: keystore-properties
 
+      - name: Download debug keystore
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-keystore
+
+      - name: Create app directory and copy keystore
+        run: |
+          mkdir -p app
+          cp debug.keystore app/
+
       - name: Run Detekt
         run: ./gradlew detekt
 
@@ -71,6 +81,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: keystore-properties
+
+      - name: Download debug keystore
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-keystore
+
+      - name: Create app directory and copy keystore
+        run: |
+          mkdir -p app
+          cp debug.keystore app/
 
       - name: Build debug APK
         run: ./gradlew assembleDebug
@@ -103,6 +123,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: keystore-properties
+
+      - name: Download debug keystore
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-keystore
+
+      - name: Create app directory and copy keystore
+        run: |
+          mkdir -p app
+          cp debug.keystore app/
 
       - name: Run unit tests
         run: ./gradlew test

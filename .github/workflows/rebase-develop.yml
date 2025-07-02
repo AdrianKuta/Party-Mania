@@ -1,0 +1,43 @@
+name: Rebase Develop onto Main
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches: [ main ]
+
+jobs:
+  rebase:
+    name: Rebase Develop onto Main
+    # Only run this job if the PR was merged or a direct push to main was made
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for all branches
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Rebase develop onto main
+        run: |
+          echo "Fetching latest changes from remote..."
+          git fetch origin main develop
+          
+          echo "Checking out develop branch..."
+          git checkout develop
+          
+          echo "Rebasing develop onto main..."
+          if git rebase origin/main; then
+            echo "Rebase successful, pushing changes..."
+            git push --force-with-lease origin develop
+            echo "Successfully rebased and pushed develop branch"
+          else
+            echo "Rebase failed with conflicts. Aborting rebase."
+            git rebase --abort
+            exit 1
+          fi
