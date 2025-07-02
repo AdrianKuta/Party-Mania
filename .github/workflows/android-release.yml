@@ -2,7 +2,7 @@ name: Android Release
 
 on:
   release:
-    types: [ created ]
+    types: [ released ]
 
 jobs:
   release:
@@ -31,9 +31,9 @@ jobs:
         run: |
           echo "keyAlias=$KEY_ALIAS" > keystore.properties
           echo "keyPassword=$KEY_PASSWORD" >> keystore.properties
-          echo "storeFile=release.keystore" >> keystore.properties
+          echo "storeFile=upload-keystore.jks" >> keystore.properties
           echo "storePassword=$STORE_PASSWORD" >> keystore.properties
-          echo $KEYSTORE_BASE64 | base64 -d > release.keystore
+          echo $KEYSTORE_BASE64 | base64 -d > upload-keystore.jks
 
       - name: Build release APK
         run: ./gradlew assembleRelease
