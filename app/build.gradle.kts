@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "dev.adriankuta.partymania"
-        versionCode = 13
+        versionCode = 14
         versionName = "0.0.3-${versionCode}"
         //signingConfig = signingConfigs.getByName("debug")
     }
