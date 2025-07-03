@@ -3,5 +3,4 @@ package dev.adriankuta.partymania
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
-@HiltAndroidApp
-class MyApplication : Application() {}
+open class BaseApplication : Application()
