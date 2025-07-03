@@ -1,4 +1,4 @@
-name: Rebase Develop onto Main
+name: Merge Main into Develop
 
 on:
   pull_request:
@@ -8,8 +8,8 @@ on:
     branches: [ improve-ci-cd ]
 
 jobs:
-  rebase:
-    name: Rebase Develop onto Main
+  merge:
+    name: Merge Main into Develop
     # Only run this job if the PR was merged or a direct push to main was made
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
@@ -24,21 +24,21 @@ jobs:
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Rebase develop onto main
+      - name: Merge main into develop
         run: |
           echo "Fetching latest changes from remote..."
           git fetch origin main develop
-          
+
           echo "Checking out develop branch..."
           git checkout develop
-          
-          echo "Rebasing develop onto main..."
-          if git rebase origin/main; then
-            echo "Rebase successful, pushing changes..."
+
+          echo "Merging main into develop..."
+          if git merge origin/main; then
+            echo "Merge successful, pushing changes..."
             git push origin develop
-            echo "Successfully rebased and pushed develop branch"
+            echo "Successfully merged and pushed develop branch"
           else
-            echo "Rebase failed with conflicts. Aborting rebase."
-            git rebase --abort
+            echo "Merge failed with conflicts. Aborting merge."
+            git merge --abort
             exit 1
           fi
