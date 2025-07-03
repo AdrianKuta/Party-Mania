@@ -23,6 +23,8 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Rebase develop onto main
+        with:
+          token: ${{ secrets.GH_PAT }}
         run: |
           echo "Fetching latest changes from remote..."
           git fetch origin main develop
