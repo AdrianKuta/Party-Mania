@@ -35,7 +35,7 @@ jobs:
           echo "Rebasing develop onto main..."
           if git rebase origin/main; then
             echo "Rebase successful, pushing changes..."
-            git push --force-with-lease origin develop
+            git push origin develop
             echo "Successfully rebased and pushed develop branch"
           else
             echo "Rebase failed with conflicts. Aborting rebase."
