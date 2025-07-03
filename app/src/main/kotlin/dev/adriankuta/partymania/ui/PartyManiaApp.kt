@@ -7,6 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.google.android.gms.ads.AdRequest
@@ -34,7 +35,9 @@ fun PartyManiaApp(
                     modifier = Modifier
                         .weight(1f),
                 )
-                AdMobBanner()
+                AdMobBanner(
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                )
             }
         }
     }
