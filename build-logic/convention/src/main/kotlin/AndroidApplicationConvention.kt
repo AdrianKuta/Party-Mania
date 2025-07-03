@@ -53,7 +53,6 @@ class AndroidApplicationConvention : Plugin<Project> {
                                 false // Test coverage spanks memory on the CI with ye older AGP
                             enableAndroidTestCoverage = false
                         }
-                        applicationIdSuffix = ".debug"
                     }
                 }
 

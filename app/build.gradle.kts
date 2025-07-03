@@ -12,8 +12,8 @@ android {
 
     defaultConfig {
         applicationId = "dev.adriankuta.partymania"
-        versionCode = 14
-        versionName = "0.0.3-${versionCode}"
+        versionCode = 15
+        versionName = "0.0.4-${versionCode}"
         //signingConfig = signingConfigs.getByName("debug")
     }
 
@@ -55,7 +55,6 @@ android {
 }
 
 dependencies {
-
     implementation(projects.core.designsystem)
     implementation(projects.feature.game.questions)
 
@@ -73,4 +72,5 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.app.update.ktx)
+    implementation(libs.play.services.ads)
 }
