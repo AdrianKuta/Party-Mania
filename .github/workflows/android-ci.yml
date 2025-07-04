@@ -135,7 +135,7 @@ jobs:
             const runId = context.runId;
             const artifactUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}/artifacts/${{ needs.build.outputs.artifact-id }}`;
 
-            const message = `### 📱 Debug APK Available\n\nYou can download the debug APK from the [Artifacts section](${artifactUrl}) of this workflow run.\n\nLook for the \`${artifactName}\` artifact.`;
+            const message = `### 📱 Debug APK Available\n\nYou can download the debug APK from here [App-debug.apk](${artifactUrl}).`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
